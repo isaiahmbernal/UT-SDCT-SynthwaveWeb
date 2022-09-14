@@ -3,10 +3,11 @@ import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
 
 const MapPage = () => {
   const { isLoaded } = useLoadScript({ googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY });
+  const [center, setCenter] = useState({ lat: 30.2853294530747, lng: -97.7345134112601 });
   const [infoShow, setInfoShow] = useState(false);
   const [selectedInfo, setSelectedInfo] = useState({});
+  const [zoom, setZoom] = useState(18);
 
-  const center = { lat: 30.2853294530747, lng: -97.7345134112601 };
   const markers = [
     {
       name: "Stage",
@@ -41,19 +42,25 @@ const MapPage = () => {
   ];
 
   return (
-    <div className="min-w-screen min-h-screen bg-mountain-wave bg-center bg-cover flex flex-col gap-6">
-      <nav className="bg-purple-700 text-white h-10 flex gap-4 items-center justify-center rounded-b-lg shadow-lg">
+    <div className="min-w-screen min-h-screen bg-running-background bg-center bg-cover flex flex-col items-center gap-[3vh]">
+      <nav className="bg-purple-600 text-white h-[7vh] w-full flex gap-4 items-center justify-center rounded-b-lg shadow-lg">
         <p className="cursor-pointer">Map</p>
         <p className="cursor-pointer">Countdown</p>
         <p className="cursor-pointer">About</p>
       </nav>
       {isLoaded ? (
-        <div className=" w-full flex flex-col items-center">
+        <div className="w-[90vw] h-[87vh] flex flex-col items-center">
           <GoogleMap
-            options={{ mapId: "3f5b35b7ec5cba24" }}
-            zoom={18}
+            options={{
+              mapId: "3f5b35b7ec5cba24",
+              fullscreenControl: false,
+              streetViewControl: false,
+              mapTypeControl: false,
+              zoomControl: false,
+            }}
+            zoom={zoom}
             center={center}
-            mapContainerClassName="self-center w-full max-w-[90%] h-[30rem] border-[.2rem] border-gray-800 rounded-xl shadow-2xl"
+            mapContainerClassName="self-center w-full h-full shadow-2xl border-[.20rem] border-purple-500 rounded-lg shadow-xl"
           >
             {markers.map((marker, index) => (
               <MarkerF
@@ -62,6 +69,7 @@ const MapPage = () => {
                 onClick={() => {
                   setInfoShow(true);
                   setSelectedInfo(marker);
+                  setCenter(marker.pos);
                 }}
                 icon={{
                   url: marker.ico ? marker.ico : "https://www.svgrepo.com/show/129576/music-note.svg",
@@ -71,10 +79,10 @@ const MapPage = () => {
             ))}
           </GoogleMap>
           {infoShow && (
-            <section className="absolute bottom-0 z-10 h-[50%] w-full rounded-t-lg shadow-xl bg-black/80 text-white flex flex-col items-center justify-between gap-4 p-8">
+            <section className="absolute bottom-0 z-10 h-[40%] w-full rounded-t-lg shadow-xl bg-black/80 text-white flex flex-col items-center justify-between py-6 px-3">
               <h1 className="font-bold text-2xl">{selectedInfo.name}</h1>
               <p className="text-center">{selectedInfo.info}</p>
-              <button className="bg-red-700 p-2 rounded-lg" onClick={() => setInfoShow(false)}>
+              <button className="bg-purple-600 p-2 rounded-lg" onClick={() => setInfoShow(false)}>
                 Close
               </button>
             </section>
