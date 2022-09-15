@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
+import PageLayout from "./PageLayout";
 
 const MapPage = () => {
   const { isLoaded } = useLoadScript({ googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY });
@@ -7,7 +8,10 @@ const MapPage = () => {
   const [infoShow, setInfoShow] = useState(false);
   const [selectedInfo, setSelectedInfo] = useState({});
   const [zoom, setZoom] = useState(18);
+  const [username, setUsername] = useState("default user");
   const infoHeight = "40vh";
+
+  console.log(username)
 
   const markers = [
     {
@@ -43,67 +47,60 @@ const MapPage = () => {
   ];
 
   return (
-    <div className="min-w-screen min-h-screen bg-running-background bg-center bg-cover flex flex-col items-center gap-[3vh]">
-      <nav className="bg-purple-600 text-white h-[7vh] w-full flex gap-4 items-center justify-center rounded-b-lg shadow-lg">
-        <p className="cursor-pointer">Map</p>
-        <p className="cursor-pointer">Countdown</p>
-        <p className="cursor-pointer">About</p>
-      </nav>
+    <PageLayout>
       {isLoaded ? (
-        <div>
-          <div className="absolute w-[90vw] h-[87vh] flex flex-col items-center blur-sm animate-pulse bg-gradient-to-r from-pink-500 to-purple-500 p-[.2rem] rounded-lg"></div>
-          <div className="w-[90vw] h-[87vh] flex flex-col items-center p-[.2rem] rounded-lg">
-            <GoogleMap
-              options={{
-                mapId: "3f5b35b7ec5cba24",
-                fullscreenControl: false,
-                streetViewControl: false,
-                mapTypeControl: false,
-                zoomControl: false,
-              }}
-              zoom={zoom}
-              center={center}
-              mapContainerClassName="self-center w-full h-full rounded-lg border-[.2rem] border-purple-700 shadow-xl"
-            >
-              {markers.map((marker, index) => (
-                <MarkerF
-                  position={marker.pos}
-                  key={index}
-                  onClick={() => {
-                    setInfoShow(true);
-                    setSelectedInfo(marker);
-                    setCenter(marker.pos);
-                  }}
-                  icon={{
-                    url: marker.ico ? marker.ico : "https://www.svgrepo.com/show/129576/music-note.svg",
-                    scaledSize: new window.google.maps.Size(50, 50),
-                  }}
+        <>
+          <div className="absolute w-[90vw] h-[87vh] flex flex-col items-center blur-md animate-pulse bg-gradient-to-r from-pink-500 to-purple-500 p-[.2rem] rounded-lg"></div>
+          <GoogleMap
+            options={{
+              mapId: "3f5b35b7ec5cba24",
+              fullscreenControl: false,
+              streetViewControl: false,
+              mapTypeControl: false,
+              zoomControl: false,
+            }}
+            zoom={zoom}
+            center={center}
+            mapContainerClassName="self-center w-full h-full rounded-lg border-[.2rem] border-purple-700 shadow-xl"
+          >
+            {markers.map((marker, index) => (
+              <MarkerF
+                position={marker.pos}
+                key={index}
+                onClick={() => {
+                  setInfoShow(true);
+                  setSelectedInfo(marker);
+                  setCenter(marker.pos);
+                }}
+                icon={{
+                  url: marker.ico ? marker.ico : "https://www.svgrepo.com/show/129576/music-note.svg",
+                  scaledSize: new window.google.maps.Size(50, 50),
+                }}
+              />
+            ))}
+          </GoogleMap>
+          {infoShow && (
+            <section className="group absolute transition ease-in-out hover:-translate-y-[30vh] -bottom-[30vh] z-10 h-[40vh] w-full rounded-2xl shadow-2xl bg-black/80 text-white flex flex-col items-center justify-between">
+              <div className="h-[10vh] w-full relative flex items-center justify-center">
+                <h1 className="font-bold text-2xl">{selectedInfo.name}</h1>
+                <img
+                  className="group-hover:hidden absolute h-[40%] left-4"
+                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.iconsdb.com%2Ficons%2Fpreview%2Fwhite%2Farrow-up-xxl.png&f=1&nofb=1"
                 />
-              ))}
-            </GoogleMap>
-            {infoShow && (
-              <section className="group absolute transition ease-in-out hover:-translate-y-[30vh] -bottom-[30vh] z-10 h-[40vh] w-full rounded-t-lg shadow-2xl bg-black/80 text-white flex flex-col items-center justify-between">
-                <div className="h-[10vh] w-full relative flex items-center justify-center">
-                  <h1 className="font-bold text-2xl">{selectedInfo.name}</h1>
-                  <img
-                    className="group-hover:hidden absolute h-[40%] left-4"
-                    src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.iconsdb.com%2Ficons%2Fpreview%2Fwhite%2Farrow-up-xxl.png&f=1&nofb=1"
-                  />
-                </div>
-                <div className="w-[80%] h-[40%] flex flex-col items-center justify-center">
-                  <p className="overflow-y-scroll">{selectedInfo.info}</p>
-                </div>
-                <button className="bg-purple-600 w-[92%] p-2 m-[4vh] rounded-lg" onClick={() => setInfoShow(false)}>
-                  Close
-                </button>
-              </section>
-            )}
-          </div>
-        </div>
+              </div>
+              <div className="w-[80%] h-[40%] flex flex-col items-center justify-center">
+                <p className="overflow-y-scroll">{selectedInfo.info}</p>
+              </div>
+              <button className="bg-purple-600 w-[92%] p-2 m-[4vh] rounded-lg" onClick={() => setInfoShow(false)}>
+                Close
+              </button>
+            </section>
+          )}
+        </>
       ) : (
-        <h1 className="text-center">Loading...</h1>
+        <h1 className="text-center text-white">Loading...</h1>
       )}
-    </div>
+    </PageLayout>
   );
 };
 
