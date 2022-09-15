@@ -7,13 +7,14 @@ const MapPage = () => {
   const [infoShow, setInfoShow] = useState(false);
   const [selectedInfo, setSelectedInfo] = useState({});
   const [zoom, setZoom] = useState(18);
+  const infoHeight = "40vh";
 
   const markers = [
     {
       name: "Stage",
       pos: { lat: 30.285380455779517, lng: -97.73497743341647 },
       ico: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/325/musical-keyboard_1f3b9.png",
-      info: "Cumque quas libero tempora magni beatae saepe nam. Voluptate et pariatur vel aperiam ipsum quisquam. Provident corporis eos recusandae quisquam veritatis corrupti non.",
+      info: "Cumque quas libero tempora magni beatae saepe nam. Voluptate et pariatur vel aperiam ipsum quisquam. Provident corporis eos recusandae quisquam veritatis corrupti non. Cumque quas libero tempora magni beatae saepe nam. Voluptate et pariatur vel aperiam ipsum quisquam. Provident corporis eos recusandae quisquam veritatis corrupti non.",
     },
     {
       name: "Lambo",
@@ -81,10 +82,18 @@ const MapPage = () => {
               ))}
             </GoogleMap>
             {infoShow && (
-              <section className="absolute bottom-0 z-10 h-[40%] w-full rounded-t-lg shadow-xl bg-black/80 text-white flex flex-col items-center justify-between py-6 px-3">
-                <h1 className="font-bold text-2xl">{selectedInfo.name}</h1>
-                <p className="text-center">{selectedInfo.info}</p>
-                <button className="bg-purple-600 p-2 rounded-lg" onClick={() => setInfoShow(false)}>
+              <section className="group absolute transition ease-in-out hover:-translate-y-[30vh] -bottom-[30vh] z-10 h-[40vh] w-full rounded-t-lg shadow-2xl bg-black/80 text-white flex flex-col items-center justify-between">
+                <div className="h-[10vh] w-full relative flex items-center justify-center">
+                  <h1 className="font-bold text-2xl">{selectedInfo.name}</h1>
+                  <img
+                    className="group-hover:hidden absolute h-[40%] left-4"
+                    src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.iconsdb.com%2Ficons%2Fpreview%2Fwhite%2Farrow-up-xxl.png&f=1&nofb=1"
+                  />
+                </div>
+                <div className="w-[80%] h-[40%] flex flex-col items-center justify-center">
+                  <p className="overflow-y-scroll">{selectedInfo.info}</p>
+                </div>
+                <button className="bg-purple-600 w-[92%] p-2 m-[4vh] rounded-lg" onClick={() => setInfoShow(false)}>
                   Close
                 </button>
               </section>
