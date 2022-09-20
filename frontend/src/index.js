@@ -2,33 +2,39 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import MapPage from "./pages/MapPage";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import MapPage from "./pages/Map/MapPage";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 import MissingPage from "./pages/MissingPage";
 import CountdownPage from "./pages/CountdownPage";
 import ProgressPage from "./pages/ProgressPage";
 
 export default function App() {
+  const location = useLocation();
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/">
-          <Route index element={<MapPage />} />
-          <Route path="countdown" element={<CountdownPage />} />
-          <Route path="progress" element={<ProgressPage />}>
-            {/* <Route path="?" */}
+    <div className="bg-black">
+      <AnimatePresence mode="wait">
+        <Routes key={location.pathname} location={location}>
+          <Route path="/">
+            <Route index element={<MapPage />} />
+            <Route path="countdown" element={<CountdownPage />} />
+            <Route path="progress" element={<ProgressPage />}>
+              {/* <Route path="?" */}
+            </Route>
+            <Route path="*" element={<MissingPage />} />
           </Route>
-          <Route path="*" element={<MissingPage />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </AnimatePresence>
+    </div>
   );
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>
 );
 

@@ -1,7 +1,8 @@
-import { useMemo, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useMemo, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
-import PageLayout from "./PageLayout";
+import PageLayout from "../PageLayout";
+import MapInfo from "./MapInfo";
 
 const MapPage = () => {
   const { isLoaded } = useLoadScript({
@@ -51,12 +52,11 @@ const MapPage = () => {
   return (
     <PageLayout>
       {isLoaded ? (
-        <>
-          <div className="absolute w-[90vw] h-[87vh] flex flex-col items-center blur-md animate-pulse bg-gradient-to-r from-pink-500 to-purple-500 p-[.2rem] rounded-lg"></div>
+        <div className="relative bg-simple-running flex flex-col items-center w-full h-full p-4">
+          <div className="absolute w-[90vw] h-[87vh] flex flex-col items-center blur-md animate-pulse bg-gradient-to-r from-blue-500 to-blue-600 p-[.2rem] rounded-lg"></div>
           <motion.button
-            className="absolute z-10 mt-2 ml-2 bg-purple-800/90 text-white p-2 flex justify-center items-center rounded-lg"
-            initial={{ x: -100 }}
-            animate={{ x: 0 }}
+            className="absolute z-10 mt-2 ml-2 bg-black/90 border-[.1rem] border-border text-white p-2 flex justify-center items-center font-share-tech-mono"
+            initial={{ x: -100, scale: 1 }}
             onClick={() => setCenter(markers[0].pos)}
           >
             Re-center Map
@@ -68,12 +68,12 @@ const MapPage = () => {
               streetViewControl: false,
               mapTypeControl: false,
               zoomControl: false,
-              // maxZoom: zoom + 1,
-              // minZoom: zoom - 0.3,
+              maxZoom: zoom + 1,
+              minZoom: zoom - 0.3,
             }}
             zoom={zoom}
             center={center}
-            mapContainerClassName="self-center w-full h-full rounded-xl border-[.2rem] border-purple-700 shadow-xl"
+            mapContainerClassName="self-center w-full h-full border-[.1rem] border-border shadow-xl"
           >
             {markers.map((marker, index) => (
               <MarkerF
@@ -85,47 +85,20 @@ const MapPage = () => {
                   setCenter(marker.pos);
                 }}
                 icon={{
-                  url: marker.ico ? marker.ico : "https://www.svgrepo.com/show/129576/music-note.svg",
+                  url: marker.ico
+                    ? marker.ico
+                    : "https://www.svgrepo.com/show/129576/music-note.svg",
                   scaledSize: new window.google.maps.Size(50, 50),
                 }}
               />
             ))}
           </GoogleMap>
-          {infoShow && (
-            <motion.section
-              className="absolute bottom-0 z-10 h-[35vh] w-full font-share-tech-mono rounded-xl shadow-2xl bg-purple-800/90 text-white flex flex-col items-center justify-between p-4 gap-4"
-              initial={{ y: 100 }}
-              animate={{ y: 0 }}
-            >
-              <div className="h-[20%] w-full flex items-center justify-between">
-                <motion.h1
-                  className="bg-black/10 rounded-xl px-2 py-1 font-bold text-2xl"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                >
-                  {selectedInfo.name}
-                </motion.h1>
-                <motion.button
-                  className="bg-red-700 px-4 py-2 rounded-lg"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  onClick={() => setInfoShow(false)}
-                >
-                  X
-                </motion.button>
-              </div>
-              <motion.p
-                className="text-justify rounded-xl h-full w-full bg-black/10 text-white overflow-y-scroll text-lg px-2 py-1"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-              >
-                {selectedInfo.info}
-              </motion.p>
-            </motion.section>
-          )}
-        </>
+          <AnimatePresence>
+            {infoShow && (
+              <MapInfo selectedInfo={selectedInfo} setInfoShow={setInfoShow} />
+            )}
+          </AnimatePresence>
+        </div>
       ) : (
         <h1 className="text-center text-white">Loading...</h1>
       )}

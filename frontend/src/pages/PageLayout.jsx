@@ -1,16 +1,18 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import Navbar from "./Navbar";
 
 const PageLayout = ({ children }) => {
   return (
-    <div className="min-w-screen min-h-screen bg-running-background bg-center bg-cover flex flex-col items-center gap-[3vh]">
-      <nav className="bg-purple-600 text-white font-share-tech-mono h-[7vh] w-full flex gap-4 items-center justify-center shadow-2xl">
-        <Link to={"/"}>Map</Link>
-        <Link to={"/countdown"}>Countdown</Link>
-        <Link to={"/progress"}>Progress</Link>
-        <Link to={"/about"}>About</Link>
-      </nav>
-      <div className="relative w-[90vw] h-[87vh]">{children}</div>
-    </div>
+    <motion.div
+      className="min-w-screen min-h-screen bg-center bg-cover flex flex-col items-center"
+      initial={{ x: -400 }}
+      animate={{ x: 0 }}
+      transition={{ duration: 0.1 }}
+    >
+      <Navbar />
+      <div className="relative w-full h-[93vh]">{children}</div>
+    </motion.div>
   );
 };
 
