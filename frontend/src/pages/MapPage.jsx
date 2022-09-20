@@ -17,16 +17,16 @@ const MapPage = () => {
 
   const markers = [
     {
-      name: "Stage",
-      pos: { lat: 30.285380455779517, lng: -97.73497743341647 },
-      ico: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/325/musical-keyboard_1f3b9.png",
-      info: "Cumque quas libero tempora magni beatae saepe nam. Voluptate et pariatur vel aperiam ipsum quisquam. Provident corporis eos recusandae quisquam veritatis corrupti non. Cumque quas libero tempora magni beatae saepe nam. Voluptate et pariatur vel aperiam ipsum quisquam. Provident corporis eos recusandae quisquam veritatis corrupti non.",
-    },
-    {
       name: "Lambo",
       pos: { lat: 30.285334132718514, lng: -97.73454023334875 },
       ico: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/325/racing-car_1f3ce-fe0f.png",
       info: "This is a lamborghini, wow, so cool!",
+    },
+    {
+      name: "Stage",
+      pos: { lat: 30.285380455779517, lng: -97.73497743341647 },
+      ico: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/325/musical-keyboard_1f3b9.png",
+      info: "Cumque quas libero tempora magni beatae saepe nam. Voluptate et pariatur vel aperiam ipsum quisquam. Provident corporis eos recusandae quisquam veritatis corrupti non. Cumque quas libero tempora magni beatae saepe nam. Voluptate et pariatur vel aperiam ipsum quisquam. Provident corporis eos recusandae quisquam veritatis corrupti non.",
     },
     {
       name: "Entrance",
@@ -53,6 +53,14 @@ const MapPage = () => {
       {isLoaded ? (
         <>
           <div className="absolute w-[90vw] h-[87vh] flex flex-col items-center blur-md animate-pulse bg-gradient-to-r from-pink-500 to-purple-500 p-[.2rem] rounded-lg"></div>
+          <motion.button
+            className="absolute z-10 mt-2 ml-2 bg-purple-800/90 text-white p-2 flex justify-center items-center rounded-lg"
+            initial={{ x: -100 }}
+            animate={{ x: 0 }}
+            onClick={() => setCenter(markers[0].pos)}
+          >
+            Re-center Map
+          </motion.button>
           <GoogleMap
             options={{
               mapId: "3f5b35b7ec5cba24",
@@ -60,6 +68,8 @@ const MapPage = () => {
               streetViewControl: false,
               mapTypeControl: false,
               zoomControl: false,
+              maxZoom: zoom + 1,
+              minZoom: zoom - 0.3,
             }}
             zoom={zoom}
             center={center}
@@ -75,9 +85,7 @@ const MapPage = () => {
                   setCenter(marker.pos);
                 }}
                 icon={{
-                  url: marker.ico
-                    ? marker.ico
-                    : "https://www.svgrepo.com/show/129576/music-note.svg",
+                  url: marker.ico ? marker.ico : "https://www.svgrepo.com/show/129576/music-note.svg",
                   scaledSize: new window.google.maps.Size(50, 50),
                 }}
               />
@@ -101,8 +109,8 @@ const MapPage = () => {
                   className="bg-red-700 px-4 py-2 rounded-lg"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  whileHover={{scale: 1.1}}
-                  whileTap={{scale: 0.9}}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
                   onClick={() => setInfoShow(false)}
                 >
                   X
