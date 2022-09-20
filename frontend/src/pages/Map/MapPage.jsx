@@ -1,7 +1,8 @@
-import { useMemo, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useMemo, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
-import PageLayout from "./PageLayout";
+import PageLayout from "../PageLayout";
+import MapInfo from "./MapInfo";
 
 const MapPage = () => {
   const { isLoaded } = useLoadScript({
@@ -17,16 +18,16 @@ const MapPage = () => {
 
   const markers = [
     {
-      name: "Stage",
-      pos: { lat: 30.285380455779517, lng: -97.73497743341647 },
-      ico: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/325/musical-keyboard_1f3b9.png",
-      info: "Cumque quas libero tempora magni beatae saepe nam. Voluptate et pariatur vel aperiam ipsum quisquam. Provident corporis eos recusandae quisquam veritatis corrupti non. Cumque quas libero tempora magni beatae saepe nam. Voluptate et pariatur vel aperiam ipsum quisquam. Provident corporis eos recusandae quisquam veritatis corrupti non.",
-    },
-    {
       name: "Lambo",
       pos: { lat: 30.285334132718514, lng: -97.73454023334875 },
       ico: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/325/racing-car_1f3ce-fe0f.png",
       info: "This is a lamborghini, wow, so cool!",
+    },
+    {
+      name: "Stage",
+      pos: { lat: 30.285380455779517, lng: -97.73497743341647 },
+      ico: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/325/musical-keyboard_1f3b9.png",
+      info: "Cumque quas libero tempora magni beatae saepe nam. Voluptate et pariatur vel aperiam ipsum quisquam. Provident corporis eos recusandae quisquam veritatis corrupti non. Cumque quas libero tempora magni beatae saepe nam. Voluptate et pariatur vel aperiam ipsum quisquam. Provident corporis eos recusandae quisquam veritatis corrupti non.",
     },
     {
       name: "Entrance",
@@ -51,8 +52,13 @@ const MapPage = () => {
   return (
     <PageLayout>
       {isLoaded ? (
-        <>
-          <div className="absolute w-[90vw] h-[87vh] flex flex-col items-center blur-md animate-pulse bg-gradient-to-r from-pink-500 to-purple-500 p-[.2rem] rounded-lg"></div>
+        <motion.div
+          className="relative bg-simple-running flex flex-col items-center w-full h-full p-4"
+          initial={{ x: 100 }}
+          animate={{ x: 0 }}
+        >
+          <div className="absolute w-[90vw] h-[87vh] flex flex-col items-center blur-md animate-pulse bg-gradient-to-r from-blue-500 to-blue-600 p-[.2rem] rounded-lg"></div>
+
           <GoogleMap
             options={{
               mapId: "3f5b35b7ec5cba24",
@@ -60,11 +66,20 @@ const MapPage = () => {
               streetViewControl: false,
               mapTypeControl: false,
               zoomControl: false,
+              maxZoom: zoom + 1,
+              minZoom: zoom - 0.3,
             }}
             zoom={zoom}
             center={center}
-            mapContainerClassName="self-center w-full h-full rounded-xl border-[.2rem] border-purple-700 shadow-xl"
+            mapContainerClassName="relative self-center w-full h-full border-[.1rem] border-border shadow-xl"
           >
+            <motion.button
+              className="absolute left-[6.6rem] top-[.35rem] bg-black/90 border-[.1rem] border-border text-white p-2 font-share-tech-mono"
+              initial={{ x: -100 }}
+              onClick={() => setCenter(markers[0].pos)}
+            >
+              Re-center Map
+            </motion.button>
             {markers.map((marker, index) => (
               <MarkerF
                 position={marker.pos}
@@ -83,41 +98,12 @@ const MapPage = () => {
               />
             ))}
           </GoogleMap>
-          {infoShow && (
-            <motion.section
-              className="absolute bottom-0 z-10 h-[35vh] w-full font-share-tech-mono rounded-xl shadow-2xl bg-purple-800/90 text-white flex flex-col items-center justify-between p-4 gap-4"
-              initial={{ y: 100 }}
-              animate={{ y: 0 }}
-            >
-              <div className="h-[20%] w-full flex items-center justify-between">
-                <motion.h1
-                  className="bg-black/10 rounded-xl px-2 py-1 font-bold text-2xl"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                >
-                  {selectedInfo.name}
-                </motion.h1>
-                <motion.button
-                  className="bg-red-700 px-4 py-2 rounded-lg"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  whileHover={{scale: 1.1}}
-                  whileTap={{scale: 0.9}}
-                  onClick={() => setInfoShow(false)}
-                >
-                  X
-                </motion.button>
-              </div>
-              <motion.p
-                className="text-justify rounded-xl h-full w-full bg-black/10 text-white overflow-y-scroll text-lg px-2 py-1"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-              >
-                {selectedInfo.info}
-              </motion.p>
-            </motion.section>
-          )}
-        </>
+          <AnimatePresence>
+            {infoShow && (
+              <MapInfo selectedInfo={selectedInfo} setInfoShow={setInfoShow} />
+            )}
+          </AnimatePresence>
+        </motion.div>
       ) : (
         <h1 className="text-center text-white">Loading...</h1>
       )}
