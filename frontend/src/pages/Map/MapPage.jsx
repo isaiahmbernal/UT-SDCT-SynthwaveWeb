@@ -52,15 +52,13 @@ const MapPage = () => {
   return (
     <PageLayout>
       {isLoaded ? (
-        <div className="relative bg-simple-running flex flex-col items-center w-full h-full p-4">
+        <motion.div
+          className="relative bg-simple-running flex flex-col items-center w-full h-full p-4"
+          initial={{ x: 100 }}
+          animate={{ x: 0 }}
+        >
           <div className="absolute w-[90vw] h-[87vh] flex flex-col items-center blur-md animate-pulse bg-gradient-to-r from-blue-500 to-blue-600 p-[.2rem] rounded-lg"></div>
-          <motion.button
-            className="absolute z-10 mt-2 ml-2 bg-black/90 border-[.1rem] border-border text-white p-2 flex justify-center items-center font-share-tech-mono"
-            initial={{ x: -100, scale: 1 }}
-            onClick={() => setCenter(markers[0].pos)}
-          >
-            Re-center Map
-          </motion.button>
+
           <GoogleMap
             options={{
               mapId: "3f5b35b7ec5cba24",
@@ -73,8 +71,15 @@ const MapPage = () => {
             }}
             zoom={zoom}
             center={center}
-            mapContainerClassName="self-center w-full h-full border-[.1rem] border-border shadow-xl"
+            mapContainerClassName="relative self-center w-full h-full border-[.1rem] border-border shadow-xl"
           >
+            <motion.button
+              className="absolute left-[6.6rem] top-[.35rem] bg-black/90 border-[.1rem] border-border text-white p-2 font-share-tech-mono"
+              initial={{ x: -100 }}
+              onClick={() => setCenter(markers[0].pos)}
+            >
+              Re-center Map
+            </motion.button>
             {markers.map((marker, index) => (
               <MarkerF
                 position={marker.pos}
@@ -98,7 +103,7 @@ const MapPage = () => {
               <MapInfo selectedInfo={selectedInfo} setInfoShow={setInfoShow} />
             )}
           </AnimatePresence>
-        </div>
+        </motion.div>
       ) : (
         <h1 className="text-center text-white">Loading...</h1>
       )}
