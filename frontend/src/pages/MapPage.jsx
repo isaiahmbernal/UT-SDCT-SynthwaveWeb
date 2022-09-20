@@ -1,17 +1,19 @@
 import { useMemo, useState } from "react";
+import { motion } from "framer-motion";
 import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
 import PageLayout from "./PageLayout";
 
 const MapPage = () => {
-  const { isLoaded } = useLoadScript({ googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY });
-  const [center, setCenter] = useState({ lat: 30.2853294530747, lng: -97.7345134112601 });
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+  });
+  const [center, setCenter] = useState({
+    lat: 30.2853294530747,
+    lng: -97.7345134112601,
+  });
   const [infoShow, setInfoShow] = useState(false);
   const [selectedInfo, setSelectedInfo] = useState({});
   const [zoom, setZoom] = useState(18);
-  const [username, setUsername] = useState("default user");
-  const infoHeight = "40vh";
-
-  console.log(username)
 
   const markers = [
     {
@@ -61,7 +63,7 @@ const MapPage = () => {
             }}
             zoom={zoom}
             center={center}
-            mapContainerClassName="self-center w-full h-full rounded-lg border-[.2rem] border-purple-700 shadow-xl"
+            mapContainerClassName="self-center w-full h-full rounded-xl border-[.2rem] border-purple-700 shadow-xl"
           >
             {markers.map((marker, index) => (
               <MarkerF
@@ -73,28 +75,47 @@ const MapPage = () => {
                   setCenter(marker.pos);
                 }}
                 icon={{
-                  url: marker.ico ? marker.ico : "https://www.svgrepo.com/show/129576/music-note.svg",
+                  url: marker.ico
+                    ? marker.ico
+                    : "https://www.svgrepo.com/show/129576/music-note.svg",
                   scaledSize: new window.google.maps.Size(50, 50),
                 }}
               />
             ))}
           </GoogleMap>
           {infoShow && (
-            <section className="group absolute transition ease-in-out hover:-translate-y-[30vh] -bottom-[30vh] z-10 h-[40vh] w-full rounded-2xl shadow-2xl bg-black/80 text-white flex flex-col items-center justify-between">
-              <div className="h-[10vh] w-full relative flex items-center justify-center">
-                <h1 className="font-bold text-2xl">{selectedInfo.name}</h1>
-                <img
-                  className="group-hover:hidden absolute h-[40%] left-4"
-                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.iconsdb.com%2Ficons%2Fpreview%2Fwhite%2Farrow-up-xxl.png&f=1&nofb=1"
-                />
+            <motion.section
+              className="absolute bottom-0 z-10 h-[35vh] w-full font-share-tech-mono rounded-xl shadow-2xl bg-purple-800/90 text-white flex flex-col items-center justify-between p-4 gap-4"
+              initial={{ y: 100 }}
+              animate={{ y: 0 }}
+            >
+              <div className="h-[20%] w-full flex items-center justify-between">
+                <motion.h1
+                  className="bg-black/10 rounded-xl px-2 py-1 font-bold text-2xl"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                >
+                  {selectedInfo.name}
+                </motion.h1>
+                <motion.button
+                  className="bg-red-700 px-4 py-2 rounded-lg"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  whileHover={{scale: 1.1}}
+                  whileTap={{scale: 0.9}}
+                  onClick={() => setInfoShow(false)}
+                >
+                  X
+                </motion.button>
               </div>
-              <div className="w-[80%] h-[40%] flex flex-col items-center justify-center">
-                <p className="overflow-y-scroll">{selectedInfo.info}</p>
-              </div>
-              <button className="bg-purple-600 w-[92%] p-2 m-[4vh] rounded-lg" onClick={() => setInfoShow(false)}>
-                Close
-              </button>
-            </section>
+              <motion.p
+                className="text-justify rounded-xl h-full w-full bg-black/10 text-white overflow-y-scroll text-lg px-2 py-1"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              >
+                {selectedInfo.info}
+              </motion.p>
+            </motion.section>
           )}
         </>
       ) : (
