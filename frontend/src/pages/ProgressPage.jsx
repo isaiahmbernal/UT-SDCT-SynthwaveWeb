@@ -3,7 +3,7 @@ import PageLayout from "./PageLayout";
 const ProgressPage = () => {
   return (
     <PageLayout>
-      <h1 className="text-white">QR Progress</h1>
+      <div className="bg-screen-background h-full w-full">Progress Code</div>
     </PageLayout>
   );
 }

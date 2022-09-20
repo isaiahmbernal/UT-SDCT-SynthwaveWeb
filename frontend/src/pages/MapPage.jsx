@@ -68,8 +68,8 @@ const MapPage = () => {
               streetViewControl: false,
               mapTypeControl: false,
               zoomControl: false,
-              maxZoom: zoom + 1,
-              minZoom: zoom - 0.3,
+              // maxZoom: zoom + 1,
+              // minZoom: zoom - 0.3,
             }}
             zoom={zoom}
             center={center}

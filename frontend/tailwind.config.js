@@ -16,6 +16,11 @@ module.exports = {
       fontFamily: {
         "share-tech-mono": ["Share Tech Mono"],
       },
+      colors: {
+        "screen-background": "#001018",
+        "button-background": "#70d7ff",
+        "form-background": "#767680"
+      }
     },
   },
   plugins: [],

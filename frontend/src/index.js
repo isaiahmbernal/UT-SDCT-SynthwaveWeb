@@ -8,21 +8,27 @@ import MissingPage from "./pages/MissingPage";
 import CountdownPage from "./pages/CountdownPage";
 import ProgressPage from "./pages/ProgressPage";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
+export default function App() {
+  return (
     <BrowserRouter>
       <Routes>
         <Route path="/">
           <Route index element={<MapPage />} />
           <Route path="countdown" element={<CountdownPage />} />
-          <Route path="progress" element={<ProgressPage />} >
+          <Route path="progress" element={<ProgressPage />}>
             {/* <Route path="?" */}
           </Route>
           <Route path="*" element={<MissingPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <App />
   </React.StrictMode>
 );
 
