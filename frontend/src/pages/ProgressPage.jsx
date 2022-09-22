@@ -17,7 +17,7 @@ const ProgressPage = () => {
         {/* Component Code Goes Here */}
         <p>Progress Page</p>
         <p>Ironic, isn't it haaaaaaaaaaaa</p>
-        <p>Ironic, isn't it haaaaaaaaaaaaloooo</p>
+        <p>Ironic, isn't it haaaaaaaaaaaaloo000000000000o010101o</p>
         <h1>
           {scannedQR} / {totalQR} QR Codes Scanned
         </h1>
