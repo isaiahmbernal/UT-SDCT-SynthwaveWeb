@@ -16,7 +16,7 @@ const ProgressPage = () => {
       <div className="text-white relative bg-mountain-wave bg-cover bg-center flex flex-col items-center w-full h-full p-4">
         {/* Component Code Goes Here */}
         <p>Progress Page</p>
-        <p>Ironic, isn't it</p>
+        <p>Ironic, isn't it haaaaaaaaaaaa</p>
         <h1>
           {scannedQR} / {totalQR} QR Codes Scanned
         </h1>
