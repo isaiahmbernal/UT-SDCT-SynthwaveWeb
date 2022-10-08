@@ -34,6 +34,9 @@ module.exports = {
         form: "#478AB1",
         border: "#478AB1",
       },
+      animation: {
+        "bounce-slow": "bounce 1s linear infinite"
+      },
     },
   },
   plugins: [],

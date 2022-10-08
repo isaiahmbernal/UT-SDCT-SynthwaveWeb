@@ -53,13 +53,32 @@ const MapPage = () => {
     <PageLayout>
       {isLoaded ? (
         <motion.div
-          className="relative bg-simple-running flex flex-col items-center w-full h-full p-4"
-          initial={{ x: 100 }}
+          className="relative bg-simple-running bg-center bg-cover flex flex-col items-center w-full h-full p-4"
+          initial={{ x: 1000 }}
           animate={{ x: 0 }}
         >
-          <div className="absolute w-[90vw] h-[87vh] flex flex-col items-center blur-md animate-pulse bg-gradient-to-r from-blue-500 to-blue-600 p-[.2rem] rounded-lg"></div>
+          {/* <div className="absolute w-[90vw] h-[87vh] flex flex-col items-center blur-md animate-pulse bg-gradient-to-r from-blue-500 to-blue-600 p-[.2rem] rounded-lg"></div> */}
+          <div className="flex justify-center flex-grow-0 relative w-full h-full bg-red-100">
+            <img
+              src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F1.bp.blogspot.com%2F-01dGvJQ0DYw%2FU-pCnkiYILI%2FAAAAAAAAD_A%2FGEWTv7xRD00%2Fs1600%2F1-Plan.jpg&f=1&nofb=1&ipt=733a0c9bab93acff7fb8d8deaddbc8f5aabeaff4a44e6b368cdb99fecd0f886d&ipo=images"
+              className=""
+            />
+            <motion.img
+              className="left-[50%] top-[50%] absolute bg-blue-600 w-[5rem] h-[5rem] cursor-pointer hover:animate-spin"
+              initial={{ x: -300 }}
+              animate={{ x: 0 }}
+              transition={{ delay: 1 }}
+              src="https://cdn.discordapp.com/attachments/1014238964061847654/1024392516688154694/lambo.png"
+            ></motion.img>
+            <motion.div
+              className="left-[50%] top-[30%] absolute bg-blue-600 w-[5rem] h-[5rem] cursor-pointer hover:animate-spin"
+              initial={{ x: 300 }}
+              animate={{ x: 0 }}
+              transition={{ delay: 2 }}
+            ></motion.div>
+          </div>
 
-          <GoogleMap
+          {/* <GoogleMap
             options={{
               mapId: "3f5b35b7ec5cba24",
               fullscreenControl: false,
@@ -97,7 +116,7 @@ const MapPage = () => {
                 }}
               />
             ))}
-          </GoogleMap>
+          </GoogleMap> */}
           <AnimatePresence>
             {infoShow && (
               <MapInfo selectedInfo={selectedInfo} setInfoShow={setInfoShow} />
