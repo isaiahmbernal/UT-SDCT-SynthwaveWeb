@@ -20,6 +20,8 @@ const ProgressPage = () => {
         <h1>
           {scannedQR} / {totalQR} QR Codes Scanned
         </h1>
+        {scannedQR == 2 && <img />}
+        {scannedQR == 4 && <img />}
       </div>
     </PageLayout>
   );

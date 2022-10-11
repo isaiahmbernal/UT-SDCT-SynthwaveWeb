@@ -35,7 +35,8 @@ module.exports = {
         border: "#478AB1",
       },
       animation: {
-        "bounce-slow": "bounce 1s linear infinite"
+        "custom-bounce": "bounce .5s infinite",
+        "custom-spin": "spin .5s infinite"
       },
     },
   },
