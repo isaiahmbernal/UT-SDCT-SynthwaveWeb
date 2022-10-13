@@ -6,8 +6,6 @@ import MapPage from "./pages/Map/MapPage";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import MissingPage from "./pages/MissingPage";
-import CountdownPage from "./pages/CountdownPage";
-import ProgressPage from "./pages/ProgressPage";
 
 export default function App() {
   const location = useLocation();
@@ -16,11 +14,7 @@ export default function App() {
       <AnimatePresence mode="wait">
         <Routes key={location.pathname} location={location}>
           <Route path="/">
-            <Route index element={<CountdownPage />} />
-            <Route path="map" element={<MapPage />} />
-            <Route path="progress" element={<ProgressPage />}>
-              {/* <Route path="?" */}
-            </Route>
+            <Route index element={<MapPage />} />
             <Route path="*" element={<MissingPage />} />
           </Route>
         </Routes>
