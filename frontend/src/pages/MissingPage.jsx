@@ -19,7 +19,7 @@ const MissingPage = () => {
           </motion.p>
         </div>
         <motion.div
-          className="absolute z-10 -bottom-[6rem] bg-confused-travolta bg-center bg-cover rounded-lg w-full h-full"
+          className="absolute z-10 bottom-0 bg-confused-travolta bg-center bg-cover rounded-lg w-[20rem] h-[20rem]"
           initial={{ y: 100 }}
           animate={{ y: 0 }}
         ></motion.div>

@@ -112,12 +112,14 @@ const MapPage = () => {
           QR Code Progress: {scannedQR} / {totalQR}
         </p>
         <div className="relative bg-red-100 max-w-[20rem] w-full max-h-[33rem] h-full">
+          {/* REPLACE WITH HAMBURGER */}
           <button
             className="absolute top-1 right-1 bg-blue-100"
             onClick={() => setBadgeShow(true)}
           >
             Show Badge
           </button>
+          {/* ^^^^^^^^^^^^ */}
           {markers.map((marker, index) => (
             <motion.img
               className={marker.className}
