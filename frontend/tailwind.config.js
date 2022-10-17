@@ -34,6 +34,10 @@ module.exports = {
         form: "#478AB1",
         border: "#478AB1",
       },
+      animation: {
+        "custom-bounce": "bounce .5s infinite",
+        "custom-spin": "spin .5s infinite"
+      },
     },
   },
   plugins: [],
