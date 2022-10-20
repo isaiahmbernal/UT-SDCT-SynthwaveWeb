@@ -3,32 +3,37 @@ const imageSources = [
   "/images/icons/lambo.png",
   "/images/icons/live_performance.png",
   "/images/icons/outdoor_projection.png",
-  "/images/icons/stage.png"
+  "/images/icons/stage.png",
+  "/images/icons/entrance.png",
+  "/images/icons/lambo.png",
+  "/images/icons/live_performance.png",
+  "/images/icons/star.png",
+  "/images/icons/star.png"
 ];
 
 const BadgeInfo = ({ setBadgeShow, scannedQR }) => {
-  scannedQR = 4
   return (
-    <div className="absolute bg-black/90 w-[100vw] h-[90vh]">
+    <div className="absolute bg-black/90 w-[100vw] h-[97vh]">
       <button
         className="text-white bg-black absolute top-1 right-1"
         onClick={() => setBadgeShow(false)}
       >
         Hide Badge
       </button>
-      <div className="absolute bg-white/20 w-[33vw]">
+      <div className="absolute m-8 bg-white max-w-[20rem] w-[50vw]">
 
-        <div style={{ textAlign: "center", margin: "10px" }}>
-          <b style={{ fontSize: "Large", color: "green" }}>
+        <div className="text-center mt-4">
+          <b className="text-3xl text-violet-700">
             Badges Earned
           </b>
         </div>
 
-        <div style={{ margin: "10px" }}>
+        
+        <div className="mx-4 mt-4 mb-8 grid gap-4 grid-cols-2 grid-rows-5">
           {
             imageSources.filter((s, i) => i < scannedQR).map
               (src => (
-                <img class="w-[33vw]" src={src} />
+                <img src={src} />
               ))
           }
         </div>
