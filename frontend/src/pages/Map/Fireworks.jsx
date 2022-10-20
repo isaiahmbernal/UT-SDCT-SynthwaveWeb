@@ -11,7 +11,7 @@ const canvasStyles = {
   width: "100%",
   height: "100%",
   top: 0,
-  left: 0
+  left: 0,
 };
 
 function getAnimationSettings(originXA, originXB) {
@@ -23,8 +23,8 @@ function getAnimationSettings(originXA, originXB) {
     particleCount: 150,
     origin: {
       x: randomInRange(originXA, originXB),
-      y: Math.random() - 0.2
-    }
+      y: Math.random() - 0.2,
+    },
   };
 }
 
@@ -61,19 +61,17 @@ export default function Fireworks() {
   }, [intervalId]);
 
   useEffect(() => {
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, [intervalId]);
+    startAnimation();
+    console.log("Started Confetti");
+    const timer = setTimeout(() => {
+      pauseAnimation();
+      console.log("Stopped Confetti");
+    }, 2000);
+  }, []);
 
   return (
-    <>
-      <div className="bg-red-100">
-        <button onClick={startAnimation}>Start</button>
-        <button onClick={pauseAnimation}>Pause</button>
-        <button onClick={stopAnimation}>Stop</button>
-      </div>
+    <div className="z-40">
       <ReactCanvasConfetti refConfetti={getInstance} style={canvasStyles} />
-    </>
+    </div>
   );
 }
