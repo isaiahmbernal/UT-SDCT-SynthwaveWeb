@@ -5,6 +5,7 @@ import Fireworks from "./Fireworks";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import BadgeInfo from "./BadgeInfo";
 import GoodJob from "./GoodJob";
+import NavBar from "./NavBar";
 
 const MapPage = () => {
   const markers = {
@@ -115,6 +116,7 @@ const MapPage = () => {
       initial={{ y: -1000 }}
       animate={{ y: 0 }}
     >
+      {/* <NavBar /> */}
       {/* Confetti */}
       {confetti && <Fireworks />}
       {/* <div className="absolute w-[90vw] h-[87vh] flex flex-col items-center blur-md animate-pulse bg-gradient-to-r from-blue-500 to-blue-600 p-[.2rem] rounded-lg"></div> */}
