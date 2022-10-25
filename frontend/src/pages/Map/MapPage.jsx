@@ -101,7 +101,7 @@ const MapPage = () => {
         setConfetti(true);
         setTimeout(() => {
           setConfetti(false);
-        }, 6000);
+        }, 5500);
         setGoodJob(true);
         setTimeout(() => {
           setGoodJob(false);
@@ -116,11 +116,7 @@ const MapPage = () => {
 
   return (
     // Wallpaper Background
-    <motion.div
-      className="bg-center font-share-tech-mono bg-cover flex flex-col items-center min-w-[100vw] min-h-[100vh] bg-[url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F2e%2F0d%2F84%2F2e0d842575ee5586bcfea75e42b16fe4.gif&f=1&nofb=1&ipt=f90b30e6a2e9bc12d65a8e66bccc2d796c0bab094dc90a91c9f110a65dbe16f1&ipo=images)]"
-      initial={{ y: -1000 }}
-      animate={{ y: 0 }}
-    >
+    <div className="bg-center font-share-tech-mono bg-cover flex flex-col items-center min-w-[100vw] min-h-[100vh] bg-[url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F2e%2F0d%2F84%2F2e0d842575ee5586bcfea75e42b16fe4.gif&f=1&nofb=1&ipt=f90b30e6a2e9bc12d65a8e66bccc2d796c0bab094dc90a91c9f110a65dbe16f1&ipo=images)]">
       {/* Confetti */}
       {confetti && <Fireworks />}
 
@@ -189,7 +185,7 @@ const MapPage = () => {
           />
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
   );
 };
 
