@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 
 const badgeIcons = [
+  "/logo192.png",
   "/images/icons/entrance_star.png",
   "/images/icons/lambo_star.png",
   "/images/icons/live_performance_star.png",
@@ -11,7 +12,7 @@ const badgeIcons = [
 const ProgressBar = ({ scannedQR, totalQR, setBadgeShow }) => {
   const fillPercent = (scannedQR / totalQR) * 100;
   return (
-    <div className="absolute bottom-[2%] left-[5%] w-[90%]  flex gap-2 justify-between items-end">
+    <div className="absolute bottom-[2%] left-[3%] w-[90%]  flex gap-2 justify-between items-end">
       <motion.div
         className="w-fit cursor-pointer"
         initial={{ scale: 0 }}

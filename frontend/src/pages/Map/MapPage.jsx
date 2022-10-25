@@ -133,13 +133,8 @@ const MapPage = () => {
         />
         {!updating &&
           Object.entries(markers).map(([key, value]) => (
-            <motion.img
-              className={
-                progress[key]
-                  ? value.className + " hover:animate-custom-spin"
-                  : value.className + " hover:animate-custom-bounce"
-              }
-              // style={{"transform": "none"}}
+            <motion.div
+              className={value.className}
               initial={
                 progress[key]
                   ? { y: -800, rotate: 5000 }
@@ -150,13 +145,23 @@ const MapPage = () => {
               }
               exit={{ y: 100 }}
               transition={value.transition}
-              src={progress[key] ? value.alt : value.src}
-              key={key}
-              onClick={() => {
-                setSelectedInfo(value);
-                setInfoShow(true);
-              }}
-            />
+            >
+              <img
+                className={
+                  progress[key]
+                    ? "animate-wiggle hover:animate-custom-spin"
+                    : "hover:animate-custom-bounce"
+                }
+                // style={{"transform": "none"}}
+
+                src={progress[key] ? value.alt : value.src}
+                key={key}
+                onClick={() => {
+                  setSelectedInfo(value);
+                  setInfoShow(true);
+                }}
+              />
+            </motion.div>
           ))}
       </div>
       <AnimatePresence>
@@ -177,10 +182,10 @@ const MapPage = () => {
           <motion.img
             src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fi2.kym-cdn.com%2Fphotos%2Fimages%2Foriginal%2F000%2F480%2F551%2Fb04.gif&f=1&nofb=1&ipt=5c14c11514a36193a5fb0615462db3a50e0ab0b9d3d0b4c3d469b2c09a2e7da0&ipo=images"
             className="z-50 fixed -bottom-[3rem]"
-            initial={{x: -500}}
-            animate={{x: 0}}
-            transition={{duration: 2}}
-            exit={{x: 500}}
+            initial={{ x: -500 }}
+            animate={{ x: 0 }}
+            transition={{ duration: 2 }}
+            exit={{ x: 500 }}
           />
         )}
       </AnimatePresence>
