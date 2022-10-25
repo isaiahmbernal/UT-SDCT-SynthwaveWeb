@@ -17,15 +17,26 @@ const BadgeInfo = ({ setBadgeShow, scannedQR }) => {
   scannedQR = 5;
   return (
     <motion.div
-      className="absolute bg-black/90 grid gap-8 grid-cols-2 grid-rows-3 min-h-[97vh]"
+      className="absolute bg-black/90 min-h-[97vh]"
       initial={{ x: 1000 }}
       animate={{ x: 0 }}
     >
-      {imageSources
-        .filter((s, i) => i < scannedQR)
-        .map((src) => (
-          <img className="bg-black rounded-lg" src={src} />
-        ))}
+      <div className="m-8 grid gap-8 grid-cols-2 grid-rows-3 self-center">
+        {imageSources
+          .filter((s, i) => i < scannedQR)
+          .map((src) => (
+            <img className="bg-indigo-900 rounded-3xl" src={src} />
+          ))}
+      </div>
+
+      <div className="relative m-8 content-center">
+        <button
+          className="w-full bg-black text-blue-300 text-3xl font-bold py-2 border-2 border-blue-700 rounded"
+          onClick={() => setBadgeShow(false)}
+        >
+          Close
+        </button>
+      </div>
     </motion.div>
   );
 };
