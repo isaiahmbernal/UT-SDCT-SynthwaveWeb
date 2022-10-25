@@ -15,9 +15,7 @@ const imageSources = [
 
 const BadgeInfo = ({ setBadgeShow, scannedQR }) => {
   return (
-    <
-    
-    .div
+    <motion.div
       className="absolute bg-black/90 min-h-[97vh]"
       initial={{ x: 1000 }}
       animate={{ x: 0 }}
