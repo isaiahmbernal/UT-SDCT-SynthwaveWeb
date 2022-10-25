@@ -1,33 +1,43 @@
 import { motion } from "framer-motion";
 
-const badges = [
-  {src: "/images/icons/entrance_star.png", alt: "/images/icons/entrance.png",},
-  {src: "/images/icons/lambo_star.png", alt: "/images/icons/lambo.png",},
-  {src: "/images/icons/live_performance_star.png", alt: "/images/icons/live_performance.png",},
-  {src: "/images/icons/outdoor_projection_star.png", alt: "/images/icons/outdoor_projection.png",},
-  {src: "/images/icons/stage_star.png", alt: "/images/icons/stage.png",},
+const imageSources = [
+  "/images/icons/entrance.png",
+  "/images/icons/lambo.png",
+  "/images/icons/live_performance.png",
+  "/images/icons/outdoor_projection.png",
+  "/images/icons/stage.png",
+  "/images/icons/entrance.png",
+  "/images/icons/lambo.png",
+  "/images/icons/live_performance.png",
+  "/images/icons/star.png",
+  "/images/icons/star.png",
 ];
 
-const BadgeInfo = ({ setBadgeShow, scannedQR, totalQR }) => {
+const BadgeInfo = ({ setBadgeShow, scannedQR }) => {
   return (
-    <motion.div
+    <
+    
+    .div
+      className="absolute bg-black/90 min-h-[97vh]"
       initial={{ x: 1000 }}
       animate={{ x: 0 }}
-      exit={{ x: 1000 }}
-      transition={{ duration: 0.15 }}
-      className="z-50 fixed flex flex-col bg-black/90 min-w-[100vw] min-h-[100vh] p-8"
     >
-      <div className="grid grid-rows-2 grid-cols-2 gap-8 self-center">
-        {badges.map((image, index) => (
-          <img src={index < scannedQR ? image.src : image.alt} className="bg-purple-900/30 rounded-xl shadow-md w-[10rem] h-[10rem]" key={index}/>
-        ))}
+      <div className="m-8 grid gap-8 grid-cols-2 grid-rows-3 self-center">
+        {imageSources
+          .filter((s, i) => i < scannedQR)
+          .map((src) => (
+            <img className="bg-indigo-900 rounded-3xl" src={src} />
+          ))}
       </div>
-      <button
-        className="bg-purple-800 text-white absolute bottom-[2%] left-[25%] w-[50%] h-[3rem] rounded-lg shadow-md"
-        onClick={() => setBadgeShow(false)}
-      >
-        Back
-      </button>
+
+      <div className="relative m-8 content-center">
+        <button
+          className="w-full bg-black text-blue-300 text-3xl font-bold py-2 border-2 border-blue-700 rounded"
+          onClick={() => setBadgeShow(false)}
+        >
+          Close
+        </button>
+      </div>
     </motion.div>
   );
 };
