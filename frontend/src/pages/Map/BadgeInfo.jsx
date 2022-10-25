@@ -15,7 +15,7 @@ const BadgeInfo = ({ setBadgeShow, scannedQR, totalQR }) => {
       animate={{ x: 0 }}
       exit={{ x: 1000 }}
       transition={{ duration: 0.15 }}
-      className="z-50 fixed flex flex-col bg-black/90 min-w-[100vw] min-h-[100vh]"
+      className="z-50 fixed flex flex-col bg-black/90 min-w-[100vw] min-h-[100vh] p-8"
     >
       <div className="grid grid-rows-2 grid-cols-2 gap-8 self-center">
         {badges.map((image, index) => (
