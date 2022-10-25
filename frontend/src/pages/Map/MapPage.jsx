@@ -6,6 +6,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import BadgeInfo from "./BadgeInfo";
 import GoodJob from "./GoodJob";
 import NavBar from "./NavBar";
+import { Circle, Line } from "rc-progress";
 
 const MapPage = () => {
   const markers = {
@@ -57,6 +58,7 @@ const MapPage = () => {
   const [goodJob, setGoodJob] = useState(false);
   const [confetti, setConfetti] = useState(false);
   const navigate = useNavigate();
+  const [percentage, setPercentage] = useState(0);
 
   const codes = {
     entrance: false,
@@ -81,6 +83,13 @@ const MapPage = () => {
   const scannedQR = Object.values(progress).filter((val) => {
     return val === true;
   }).length;
+
+  const changeProgressFill = () => {
+    if (percentage >= (scannedQR * 20)) {
+      return false;
+    }
+    setPercentage(percentage + 1);
+  }
 
   useEffect(() => {
     console.log("Local Storage:", progress);
@@ -109,6 +118,10 @@ const MapPage = () => {
     setUpdating(false);
   }, []);
 
+  useEffect(() => {
+   changeProgressFill();
+  }, [percentage, scannedQR]);
+
   return (
     // Wallpaper Background
     <motion.div
@@ -124,6 +137,15 @@ const MapPage = () => {
           QR Code Progress: {scannedQR} / {totalQR}
         </p> */}
       {/* Map */}
+      <div className="relative pb-2 flex max-w-[20rem]">
+        <Line
+          percent={percentage}
+          strokeWidth='3'
+          strokeLinecap="butt"
+          trailWidth={1.5}
+          strokeColor='#E68E36'
+        />
+      </div>
       <div className="relative bg-red-100 max-w-[20rem] w-full min-h-[45rem]">
         {/* REPLACE WITH HAMBURGER */}
         <button
@@ -140,7 +162,7 @@ const MapPage = () => {
               // style={{"transform": "none"}}
               initial={
                 progress[key]
-                  ? { y: -600, rotate: 5000 }
+                  ? { y: -675, rotate: 5000 }
                   : { scale: 0, rotate: 500 }
               }
               animate={
@@ -161,6 +183,7 @@ const MapPage = () => {
             />
           ))}
       </div>
+      
       <AnimatePresence>
         {infoShow && (
           <MapInfo selectedInfo={selectedInfo} setInfoShow={setInfoShow} />
