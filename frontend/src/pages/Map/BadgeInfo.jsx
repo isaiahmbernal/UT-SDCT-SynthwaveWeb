@@ -14,12 +14,12 @@ const BadgeInfo = ({ setBadgeShow, scannedQR, totalQR }) => {
       initial={{ x: 1000 }}
       animate={{ x: 0 }}
       exit={{ x: 1000 }}
-      transition={{ duration: 0.3 }}
-      className="z-50 absolute flex flex-col bg-black/90 min-w-[100vw] h-[98vh]"
+      transition={{ duration: 0.15 }}
+      className="z-50 fixed flex flex-col bg-black/90 min-w-[100vw] min-h-[100vh]"
     >
       <div className="grid grid-rows-2 grid-cols-2 gap-8 self-center">
         {badges.map((image, index) => (
-          <img src={index < scannedQR ? image.src : image.alt} className="bg-purple-900/30 rounded-xl shadow-md w-[10rem] h-[10rem]"/>
+          <img src={index < scannedQR ? image.src : image.alt} className="bg-purple-900/30 rounded-xl shadow-md w-[10rem] h-[10rem]" key={index}/>
         ))}
       </div>
       <button

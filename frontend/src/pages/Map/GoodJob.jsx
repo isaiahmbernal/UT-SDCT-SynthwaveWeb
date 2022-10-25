@@ -7,6 +7,7 @@ const GoodJob = ({ scannedQR, totalQR }) => {
       initial={{ y: -500 }}
       animate={{ y: 0 }}
       exit={{ y: -500 }}
+      transition={{delay: 1, duration: 1}}
       key="map-info"
     >
       <h1>Good Job!</h1>

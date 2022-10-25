@@ -101,7 +101,7 @@ const MapPage = () => {
         setConfetti(true);
         setTimeout(() => {
           setConfetti(false);
-        }, 3000);
+        }, 6000);
         setGoodJob(true);
         setTimeout(() => {
           setGoodJob(false);
@@ -117,7 +117,7 @@ const MapPage = () => {
   return (
     // Wallpaper Background
     <motion.div
-      className="bg-center font-share-tech-mono bg-cover flex flex-col items-center min-w-[100vw] min-h-[100vh] p-4 bg-[url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F2e%2F0d%2F84%2F2e0d842575ee5586bcfea75e42b16fe4.gif&f=1&nofb=1&ipt=f90b30e6a2e9bc12d65a8e66bccc2d796c0bab094dc90a91c9f110a65dbe16f1&ipo=images)]"
+      className="bg-center font-share-tech-mono bg-cover flex flex-col items-center min-w-[100vw] min-h-[100vh] bg-[url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F2e%2F0d%2F84%2F2e0d842575ee5586bcfea75e42b16fe4.gif&f=1&nofb=1&ipt=f90b30e6a2e9bc12d65a8e66bccc2d796c0bab094dc90a91c9f110a65dbe16f1&ipo=images)]"
       initial={{ y: -1000 }}
       animate={{ y: 0 }}
     >
@@ -125,7 +125,7 @@ const MapPage = () => {
       {confetti && <Fireworks />}
 
       {/* Map */}
-      <div className="relative bg-gray-400 min-w-[22rem] min-h-[45rem] rounded-xl shadow-md">
+      <div className="relative bg-gray-400 min-w-[22rem] min-h-[45rem] mt-3 mb-3 rounded-xl shadow-md">
         <ProgressBar
           scannedQR={scannedQR}
           totalQR={totalQR}
@@ -171,6 +171,18 @@ const MapPage = () => {
       </AnimatePresence>
       <AnimatePresence>
         {goodJob && <GoodJob scannedQR={scannedQR} totalQR={totalQR} />}
+      </AnimatePresence>
+      <AnimatePresence>
+        {goodJob && (
+          <motion.img
+            src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fi2.kym-cdn.com%2Fphotos%2Fimages%2Foriginal%2F000%2F480%2F551%2Fb04.gif&f=1&nofb=1&ipt=5c14c11514a36193a5fb0615462db3a50e0ab0b9d3d0b4c3d469b2c09a2e7da0&ipo=images"
+            className="z-50 fixed -bottom-[3rem]"
+            initial={{x: -500}}
+            animate={{x: 0}}
+            transition={{duration: 2}}
+            exit={{x: 500}}
+          />
+        )}
       </AnimatePresence>
     </motion.div>
   );
