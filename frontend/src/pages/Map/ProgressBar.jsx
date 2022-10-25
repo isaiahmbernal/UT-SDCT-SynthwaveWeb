@@ -29,14 +29,20 @@ const ProgressBar = ({ scannedQR, totalQR, setBadgeShow }) => {
       <div className="flex flex-col justify-between w-full h-[3rem]">
         {/* Progress Bar */}
         <div className="relative rounded-md bg-white/90 shadow-md h-[1rem] w-[100%] flex flex-col">
-          <div
+          <motion.div
             className="absolute h-full blur-[.5rem] animate-pulse bg-gradient-to-r from-blue-600 to-red-600 rounded-lg"
-            style={{ width: `${fillPercent}%` }}
-          ></div>
-          <div
+            // style={{ width: `${fillPercent}%` }}
+            initial={{width: 0}}
+            animate={{width: `${fillPercent}%`}}
+            transition={{duration: 1}}
+          ></motion.div>
+          <motion.div
             className={"z-[1] rounded-md bg-purple-800 h-full"}
-            style={{ width: `${fillPercent}%` }}
-          ></div>
+            // style={{ width: `${fillPercent}%` }}
+            initial={{width: 0}}
+            animate={{width: `${fillPercent}%`}}
+            transition={{duration: 1}}
+          ></motion.div>
         </div>
         {/* Text */}
         <p className="text-white">
