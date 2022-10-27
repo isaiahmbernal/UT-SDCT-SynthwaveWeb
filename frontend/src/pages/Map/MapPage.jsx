@@ -5,6 +5,7 @@ import Fireworks from "./Fireworks";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import BadgeInfo from "./BadgeInfo";
 import GoodJob from "./GoodJob";
+import ProgressBar from "./ProgressBar";
 
 const MapPage = () => {
   const markers = {
@@ -15,6 +16,7 @@ const MapPage = () => {
         "absolute fixed left-[20%] top-[5%] w-[5rem] h-[5rem] cursor-pointer",
       transition: { delay: 0.25 },
       src: "/images/icons/lambo.png",
+      alt: "/images/icons/lambo_star.png",
     },
     stage: {
       name: "Stage",
@@ -23,6 +25,7 @@ const MapPage = () => {
         "absolute left-[40%] top-[30%] w-[5rem] h-[5rem] cursor-pointer",
       transition: { delay: 0.75 },
       src: "/images/icons/stage.png",
+      alt: "/images/icons/stage_star.png",
     },
     entrance: {
       name: "Entrance",
@@ -31,6 +34,7 @@ const MapPage = () => {
         "absolute left-[60%] top-[15%] w-[5rem] h-[5rem] cursor-pointer",
       transition: { delay: 0.5 },
       src: "/images/icons/entrance.png",
+      alt: "/images/icons/entrance_star.png",
     },
     concert: {
       name: "Live Performance",
@@ -39,6 +43,7 @@ const MapPage = () => {
         "absolute left-[20%] top-[50%] w-[5rem] h-[5rem] cursor-pointer",
       transition: { delay: 1 },
       src: "/images/icons/live_performance.png",
+      alt: "/images/icons/live_performance_star.png",
     },
     projection: {
       name: "Outdoor Projection",
@@ -47,6 +52,7 @@ const MapPage = () => {
         "absolute left-[60%] top-[70%] w-[5rem] h-[5rem] cursor-pointer",
       transition: { delay: 1.25 },
       src: "/images/icons/outdoor_projection.png",
+      alt: "/images/icons/outdoor_projection_star.png",
     },
   };
   const [infoShow, setInfoShow] = useState(false);
@@ -95,11 +101,11 @@ const MapPage = () => {
         setConfetti(true);
         setTimeout(() => {
           setConfetti(false);
-        }, 3000);
+        }, 5500);
         setGoodJob(true);
         setTimeout(() => {
           setGoodJob(false);
-        }, 6000);
+        }, 4000);
         navigate("/?code=");
       } else {
         console.log("*** Nope, nice try buddy");
@@ -110,35 +116,24 @@ const MapPage = () => {
 
   return (
     // Wallpaper Background
-    <motion.div
-      className="bg-center bg-cover flex flex-col items-center min-w-[100vw] min-h-[100vh] p-8 bg-[url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.giphy.com%2Fmedia%2F3oEduOOq2VZhvNfZ6w%2Fgiphy.gif&f=1&nofb=1&ipt=30228e569abcd965b5888a9180f0ad9ad886f926270bded755719295ee53aba6&ipo=images')]"
-      initial={{ y: -1000 }}
-      animate={{ y: 0 }}
-    >
+    <div className="bg-center font-share-tech-mono bg-cover flex flex-col items-center min-w-[100vw] min-h-[100vh] bg-[url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F2e%2F0d%2F84%2F2e0d842575ee5586bcfea75e42b16fe4.gif&f=1&nofb=1&ipt=f90b30e6a2e9bc12d65a8e66bccc2d796c0bab094dc90a91c9f110a65dbe16f1&ipo=images)]">
       {/* Confetti */}
       {confetti && <Fireworks />}
-      {/* <div className="absolute w-[90vw] h-[87vh] flex flex-col items-center blur-md animate-pulse bg-gradient-to-r from-blue-500 to-blue-600 p-[.2rem] rounded-lg"></div> */}
-      {/* <p className="text-white">
-          QR Code Progress: {scannedQR} / {totalQR}
-        </p> */}
+
       {/* Map */}
-      <div className="relative bg-red-100 max-w-[20rem] w-full min-h-[45rem]">
-        {/* REPLACE WITH HAMBURGER */}
-        <button
-          className="absolute top-1 right-1 bg-blue-100"
-          onClick={() => setBadgeShow(true)}
-        >
-          Show Badge
-        </button>
-        {/* ^^^^^^^^^^^^ */}
+      <div className="relative bg-gray-400 min-w-[22rem] min-h-[45rem] mt-3 mb-3 rounded-xl shadow-md">
+        <ProgressBar
+          scannedQR={scannedQR}
+          totalQR={totalQR}
+          setBadgeShow={setBadgeShow}
+        />
         {!updating &&
           Object.entries(markers).map(([key, value]) => (
-            <motion.img
-              className={progress[key] ? value.className + " hover:animate-custom-spin" : value.className + " hover:animate-custom-bounce"}
-              // style={{"transform": "none"}}
+            <motion.div
+              className={value.className}
               initial={
                 progress[key]
-                  ? { y: -600, rotate: 5000 }
+                  ? { y: -800, rotate: 5000 }
                   : { scale: 0, rotate: 500 }
               }
               animate={
@@ -146,17 +141,23 @@ const MapPage = () => {
               }
               exit={{ y: 100 }}
               transition={value.transition}
-              src={
-                progress[key]
-                  ? process.env.PUBLIC_URL + "/images/icons/star.png"
-                  : process.env.PUBLIC_URL + value.src
-              }
-              key={key}
-              onClick={() => {
-                setSelectedInfo(value);
-                setInfoShow(true);
-              }}
-            />
+            >
+              <img
+                className={
+                  progress[key]
+                    ? "animate-wiggle hover:animate-custom-spin"
+                    : "hover:animate-custom-bounce"
+                }
+                // style={{"transform": "none"}}
+
+                src={progress[key] ? value.alt : value.src}
+                key={key}
+                onClick={() => {
+                  setSelectedInfo(value);
+                  setInfoShow(true);
+                }}
+              />
+            </motion.div>
           ))}
       </div>
       <AnimatePresence>
@@ -172,7 +173,19 @@ const MapPage = () => {
       <AnimatePresence>
         {goodJob && <GoodJob scannedQR={scannedQR} totalQR={totalQR} />}
       </AnimatePresence>
-    </motion.div>
+      <AnimatePresence>
+        {goodJob && (
+          <motion.img
+            src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fi2.kym-cdn.com%2Fphotos%2Fimages%2Foriginal%2F000%2F480%2F551%2Fb04.gif&f=1&nofb=1&ipt=5c14c11514a36193a5fb0615462db3a50e0ab0b9d3d0b4c3d469b2c09a2e7da0&ipo=images"
+            className="z-50 fixed -bottom-[3rem]"
+            initial={{ x: -500 }}
+            animate={{ x: 0 }}
+            transition={{ duration: 2 }}
+            exit={{ x: 500 }}
+          />
+        )}
+      </AnimatePresence>
+    </div>
   );
 };
 
