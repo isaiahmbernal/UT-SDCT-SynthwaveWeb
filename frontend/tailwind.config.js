@@ -42,7 +42,7 @@ module.exports = {
       },
       animation: {
         "custom-bounce": "bounce .8s infinite",
-        "custom-spin": "spin 1s infinite",
+        "custom-spin": "spin 1s  infinite",
         "wiggle": "wiggle 1.5s ease-in-out infinite"
       },
     },

@@ -6,6 +6,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import BadgeInfo from "./BadgeInfo";
 import GoodJob from "./GoodJob";
 import ProgressBar from "./ProgressBar";
+import Submission from "./Submission";
 
 const MapPage = () => {
   const markers = {
@@ -61,6 +62,7 @@ const MapPage = () => {
   const [updating, setUpdating] = useState(true);
   const [goodJob, setGoodJob] = useState(false);
   const [confetti, setConfetti] = useState(false);
+  const [finale, setFinale] = useState(false);
   const navigate = useNavigate();
 
   const codes = {
@@ -73,11 +75,14 @@ const MapPage = () => {
 
   if (localStorage.getItem("codes") === null) {
     localStorage.setItem("codes", JSON.stringify(codes));
+    localStorage.setItem("finale", false);
   }
 
   const [searchParams, setSearchParams] = useSearchParams();
   let code = searchParams.get("code");
   // console.log("QR Code Value:", code);
+  let finaleString = localStorage.getItem("finale");
+  let finaleStorage = JSON.parse(finaleString);
 
   const progressString = localStorage.getItem("codes");
   const progress = JSON.parse(progressString);
@@ -89,8 +94,15 @@ const MapPage = () => {
 
   useEffect(() => {
     console.log("Local Storage:", progress);
-    if (code) {
-      if (Object.keys(progress).includes(code)) {
+    console.log("Finale Storage:", finaleStorage);
+    console.log(finale);
+    if (finaleStorage === true) {
+      setFinale(true);
+    } else if (code) {
+      if (code == "finale") {
+        localStorage.setItem("finale", true);
+        setFinale(true);
+      } else if (Object.keys(progress).includes(code)) {
         console.log("*** That QR code looks legit!");
         console.log("Progress ", code + ":", progress[code]);
         progress[code] = true;
@@ -116,50 +128,53 @@ const MapPage = () => {
 
   return (
     // Wallpaper Background
-    <div className="bg-center font-share-tech-mono bg-cover flex flex-col items-center min-w-[100vw] min-h-[100vh] bg-[url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F2e%2F0d%2F84%2F2e0d842575ee5586bcfea75e42b16fe4.gif&f=1&nofb=1&ipt=f90b30e6a2e9bc12d65a8e66bccc2d796c0bab094dc90a91c9f110a65dbe16f1&ipo=images)]">
+    <div className="bg-center font-share-tech-mono bg-cover flex flex-col items-center min-w-[100vw] min-h-[100vh] bg-black">
       {/* Confetti */}
       {confetti && <Fireworks />}
 
       {/* Map */}
-      <div className="relative bg-gray-400 min-w-[22rem] min-h-[45rem] mt-3 mb-3 rounded-xl shadow-md">
-        <ProgressBar
-          scannedQR={scannedQR}
-          totalQR={totalQR}
-          setBadgeShow={setBadgeShow}
-        />
-        {!updating &&
-          Object.entries(markers).map(([key, value]) => (
-            <motion.div
-              className={value.className}
-              initial={
-                progress[key]
-                  ? { y: -800, rotate: 5000 }
-                  : { scale: 0, rotate: 500 }
-              }
-              animate={
-                progress[key] ? { y: 0, rotate: 0 } : { scale: 1, rotate: 0 }
-              }
-              exit={{ y: 100 }}
-              transition={value.transition}
-            >
-              <img
-                className={
-                  progress[key]
-                    ? "animate-wiggle hover:animate-custom-spin"
-                    : "hover:animate-custom-bounce"
-                }
-                // style={{"transform": "none"}}
-
-                src={progress[key] ? value.alt : value.src}
+      {!finale && (
+        <div className="relative bg-gray-800 min-w-[22rem] min-h-[45rem] mt-3 mb-3 rounded-xl shadow-md">
+          <ProgressBar
+            scannedQR={scannedQR}
+            totalQR={totalQR}
+            setBadgeShow={setBadgeShow}
+          />
+          {!updating &&
+            Object.entries(markers).map(([key, value]) => (
+              <motion.div
                 key={key}
-                onClick={() => {
-                  setSelectedInfo(value);
-                  setInfoShow(true);
-                }}
-              />
-            </motion.div>
-          ))}
-      </div>
+                className={value.className}
+                initial={
+                  progress[key]
+                    ? { y: -800, rotate: 5000 }
+                    : { scale: 0, rotate: 500 }
+                }
+                animate={
+                  progress[key] ? { y: 0, rotate: 0 } : { scale: 1, rotate: 0 }
+                }
+                exit={{ y: 100 }}
+                transition={value.transition}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.4 }}
+              >
+                <img
+                  className={
+                    progress[key]
+                      ? "animate-wiggle hover:animate-custom-spin"
+                      : "hover:animate-custom-bounce"
+                  }
+                  src={progress[key] ? value.alt : value.src}
+                  key={key}
+                  onClick={() => {
+                    setSelectedInfo(value);
+                    setInfoShow(true);
+                  }}
+                />
+              </motion.div>
+            ))}
+        </div>
+      )}
       <AnimatePresence>
         {infoShow && (
           <MapInfo selectedInfo={selectedInfo} setInfoShow={setInfoShow} />
@@ -171,9 +186,11 @@ const MapPage = () => {
         )}
       </AnimatePresence>
       <AnimatePresence>
-        {goodJob && <GoodJob scannedQR={scannedQR} totalQR={totalQR} />}
+        {goodJob && (
+          <GoodJob scannedQR={scannedQR} totalQR={totalQR} />
+        )}
       </AnimatePresence>
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {goodJob && (
           <motion.img
             src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fi2.kym-cdn.com%2Fphotos%2Fimages%2Foriginal%2F000%2F480%2F551%2Fb04.gif&f=1&nofb=1&ipt=5c14c11514a36193a5fb0615462db3a50e0ab0b9d3d0b4c3d469b2c09a2e7da0&ipo=images"
@@ -183,6 +200,11 @@ const MapPage = () => {
             transition={{ duration: 2 }}
             exit={{ x: 500 }}
           />
+        )}
+      </AnimatePresence> */}
+      <AnimatePresence>
+        {finale && (
+          <Submission setBadgeShow={setBadgeShow} scannedQR={scannedQR} />
         )}
       </AnimatePresence>
     </div>
