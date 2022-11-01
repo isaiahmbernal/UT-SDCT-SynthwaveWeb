@@ -34,9 +34,16 @@ module.exports = {
         form: "#478AB1",
         border: "#478AB1",
       },
+      keyframes: {
+        "wiggle": {
+          "0%, 100%": { transform: "rotate(-6deg)" },
+          "50%": { transform: "rotate(6deg)" },
+        }
+      },
       animation: {
         "custom-bounce": "bounce .8s infinite",
-        "custom-spin": "spin 1s infinite"
+        "custom-spin": "spin 1s  infinite",
+        "wiggle": "wiggle 1.5s ease-in-out infinite"
       },
     },
   },
