@@ -9,7 +9,7 @@ const MapInfo = ({ selectedInfo, setInfoShow }) => {
       exit={{ y: 300 }}
       key="map-info"
     >
-      <div className="absolute w-full h-full blur-[.5rem] animate-pulse bg-gradient-to-r from-pink-500 to-blue-500 rounded-lg"></div>
+      <div className="absolute w-full h-full blur-[.5rem] bg-gradient-to-r from-pink-500 to-blue-500 rounded-lg"></div>
       <div className="z-[1] bg-black/80 flex flex-col gap-3 p-3 rounded-xl w-full h-full">
         <div className="w-full flex items-center justify-between">
           <h1 className="bg-white px-2 py-1 font-bold text-xl rounded-lg shadow-md">
