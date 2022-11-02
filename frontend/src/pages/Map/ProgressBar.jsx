@@ -21,9 +21,14 @@ const ProgressBar = ({ scannedQR, totalQR, setBadgeShow }) => {
         onClick={() => setBadgeShow(true)}
       >
         <div className="absolute w-full h-full cursor-pointer animate-custom-spin-slow blur-[.5rem] bg-gradient-to-r from-pink-500 to-blue-500 rounded-2xl"></div>
-        <div className="z-[2] w-full h-full cursor-pointer bg-black rounded-2xl flex justify-center items-center p-2">
+        <div className={`z-[2] w-full h-full cursor-pointer bg-black rounded-2xl flex justify-center items-center p-2`}>
+          <span class={`${scannedQR ? 'absolute -top-1 -right-1 h-4 w-4' : 'animate-none'}`}>
+            <span class='animate-ping absolute h-4 w-4 rounded-full bg-purple-600 opacity-75'></span>
+            <span class="absolute rounded-full h-4 w-4 bg-purple-600"></span>
+          </span>
           <img
             src={`${badgeIcons[scannedQR]}`}
+            alt='Badge'
             className="w-full h-full cursor-pointer animate-wiggle"
           />
         </div>
@@ -34,7 +39,7 @@ const ProgressBar = ({ scannedQR, totalQR, setBadgeShow }) => {
           {/* Progress Bar */}
           <div className="relative rounded-md bg-gray-200 shadow-md h-[1rem] w-[100%] flex flex-col">
             <motion.div
-              className="absolute h-full blur-[.5rem] bg-gradient-to-r from-pink-500 to-blue-500 rounded-lg"
+              className="absolute h-full blur-[.5rem] bg-white animate-pulse rounded-lg"
               initial={{ width: 0 }}
               animate={{ width: `${fillPercent}%` }}
               transition={{ duration: 1 }}
