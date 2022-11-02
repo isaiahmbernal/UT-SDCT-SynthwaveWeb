@@ -23,18 +23,18 @@ const BadgeInfo = ({ setBadgeShow, scannedQR, totalQR }) => {
       transition={{ duration: 0.15 }}
       className="z-[200] fixed flex flex-col justify-between items-center bg-black/80 w-screen h-screen px-8 py-4"
     >
-      <div className="flex flex-col items-center w-full h-full gap-3">
-        <div className="relative max-w-[23rem] w-full h-[3rem] flex flex-col justify-center items-center">
-          <div className="z-[-1] absolute bg-gradient-to-r from-pink-500 to-blue-500 blur-[.5rem] w-full h-full flex justify-center items-center"></div>
-          <div className="bg-black rounded-lg w-full h-full flex justify-center items-center">
+      <div className="flex flex-col justify-between items-center w-full h-full gap-6">
+        <div className="relative max-w-[23rem] w-full min-h-[3rem] flex flex-col justify-center items-center">
+          <div className="z-[-1] rounded-xl absolute bg-gradient-to-r from-pink-500 to-blue-500 blur-[.5rem] w-full h-full flex justify-center items-center"></div>
+          <div className="bg-black rounded-xl w-full h-full flex justify-center items-center">
             <h1 className="text-white text-xl">Badge Progress</h1>
           </div>
         </div>
 
-        <div className="grid grid-rows-2 grid-cols-2 gap-6 self-center">
+        <div className="grid grid-cols-2 gap-6 h-full max-w-[19rem] w-full place-items-center">
           {badges.map((image, index) => (
             <motion.div
-              className="relative max-w-[10rem] max-h-[10rem]"
+              className="relative max-w-[8rem]"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -59,20 +59,20 @@ const BadgeInfo = ({ setBadgeShow, scannedQR, totalQR }) => {
             </motion.div>
           ))}
         </div>
-      </div>
-      <motion.div
-        className="relative max-w-[23rem] max-h-[3rem] w-full h-full"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-      >
-        <div className="z-[-1] absolute w-full h-full blur-[.5rem] bg-gradient-to-r from-pink-500 to-blue-500"></div>
-        <motion.button
-          className="bg-black text-white text-xl w-full h-full rounded-lg shadow-md"
-          onClick={() => setBadgeShow(false)}
+        <motion.div
+          className="relative max-w-[23rem] min-h-[3rem] w-full"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
         >
-          Back
-        </motion.button>
-      </motion.div>
+          <div className="z-[-1] absolute w-full h-full blur-[.5rem] rounded-xl bg-gradient-to-r from-pink-500 to-blue-500"></div>
+          <motion.button
+            className="bg-black text-white text-xl w-full h-full rounded-xl shadow-md"
+            onClick={() => setBadgeShow(false)}
+          >
+            Back
+          </motion.button>
+        </motion.div>
+      </div>
     </motion.div>
   );
 };
