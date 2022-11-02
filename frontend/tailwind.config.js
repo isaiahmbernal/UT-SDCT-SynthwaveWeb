@@ -24,6 +24,8 @@ module.exports = {
           "url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fsecure.static.tumblr.com%2F6679499515636c7faa2e284fa35ca601%2Fqx7nzxp%2FXjLnkb7g8%2Ftumblr_static_tumblr_static_856we213bn0o0gswockg0cgoc_640.gif&f=1&nofb=1)",
         "pink-grid":
           "url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmiro.medium.com%2Fmax%2F4000%2F1*pa0Fd21qxlyrLJkfW1MlpA.gif&f=1&nofb=1)",
+        "map":
+          "url('../public/map.png')",
       },
       fontFamily: {
         "share-tech-mono": ["Share Tech Mono"],
@@ -43,6 +45,7 @@ module.exports = {
       animation: {
         "custom-bounce": "bounce .8s infinite",
         "custom-spin": "spin 1s infinite",
+        "custom-spin-slow": "spin 3s linear infinite",
         "wiggle": "wiggle 1.5s ease-in-out infinite"
       },
     },

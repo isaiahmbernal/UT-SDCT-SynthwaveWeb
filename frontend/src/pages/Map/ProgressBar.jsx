@@ -1,53 +1,56 @@
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 
 const badgeIcons = [
-  "/logo192.png",
-  "/images/icons/entrance_star.png",
-  "/images/icons/lambo_star.png",
-  "/images/icons/live_performance_star.png",
-  "/images/icons/outdoor_projection_star.png",
-  "/images/icons/stage_star.png",
+  '/images/icons/sun.png',
+  '/images/icons/shoe.png',
+  '/images/icons/scooter.png',
+  '/images/icons/bad_car.png',
+  '/images/icons/good_car.png',
+  '/images/icons/lambo_car.gif',
+  '/images/icons/lambo_car.gif',
 ];
 
 const ProgressBar = ({ scannedQR, totalQR, setBadgeShow }) => {
   const fillPercent = (scannedQR / totalQR) * 100;
   return (
-    <div className="absolute bottom-[2%] left-[3%] w-[90%]  flex gap-2 justify-between items-end">
+    <div className="absolute bottom-[2%] left-[4%] w-[92%] flex gap-2 h-[5rem] justify-between items-end">
       <motion.div
-        className="w-fit cursor-pointer"
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
+        className="relative h-full aspect-square cursor-pointer rounded-2xl flex"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setBadgeShow(true)}
       >
-        <img
-          src={`${badgeIcons[scannedQR]}`}
-          className="w-[8rem] cursor-pointer animate-wiggle"
-        />
-      </motion.div>
-      <div className="flex flex-col justify-between w-full h-[3rem]">
-        {/* Progress Bar */}
-        <div className="relative rounded-md bg-white/90 shadow-md h-[1rem] w-[100%] flex flex-col">
-          <motion.div
-            className="absolute h-full blur-[.5rem] animate-pulse bg-gradient-to-r from-blue-600 to-red-600 rounded-lg"
-            // style={{ width: `${fillPercent}%` }}
-            initial={{width: 0}}
-            animate={{width: `${fillPercent}%`}}
-            transition={{duration: 1}}
-          ></motion.div>
-          <motion.div
-            className={"z-[1] rounded-md bg-purple-800 h-full"}
-            // style={{ width: `${fillPercent}%` }}
-            initial={{width: 0}}
-            animate={{width: `${fillPercent}%`}}
-            transition={{duration: 1}}
-          ></motion.div>
+        <div className="absolute w-full h-full cursor-pointer animate-custom-spin-slow blur-[.5rem] bg-gradient-to-r from-pink-500 to-blue-500 rounded-2xl"></div>
+        <div className="z-[2] w-full h-full cursor-pointer bg-black rounded-2xl flex justify-center items-center p-2">
+          <img
+            src={`${badgeIcons[scannedQR]}`}
+            className="w-full h-full cursor-pointer animate-wiggle"
+          />
         </div>
-        {/* Text */}
-        <p className="text-white">
-          {scannedQR} / {totalQR} QR Codes Found
-        </p>
+      </motion.div>
+      <div className="relative flex w-full h-full">
+        <div className="absolute w-full h-full blur-[.5rem] bg-gradient-to-r from-pink-500 to-blue-500 rounded-2xl"></div>
+        <div className="z-[1] bg-black flex flex-col justify-center gap-2 px-4 w-full h-full rounded-2xl">
+          {/* Progress Bar */}
+          <div className="relative rounded-md bg-gray-200 shadow-md h-[1rem] w-[100%] flex flex-col">
+            <motion.div
+              className="absolute h-full blur-[.5rem] bg-gradient-to-r from-pink-500 to-blue-500 rounded-lg"
+              initial={{ width: 0 }}
+              animate={{ width: `${fillPercent}%` }}
+              transition={{ duration: 1 }}
+            ></motion.div>
+            <motion.div
+              className={'z-[1] rounded-md bg-purple-600 shadow-md h-full'}
+              initial={{ width: 0 }}
+              animate={{ width: `${fillPercent}%` }}
+              transition={{ duration: 1 }}
+            ></motion.div>
+          </div>
+          {/* Text */}
+          <p className="text-white text-center">
+            {scannedQR} / {totalQR} QR Codes Found
+          </p>
+        </div>
       </div>
     </div>
   );
