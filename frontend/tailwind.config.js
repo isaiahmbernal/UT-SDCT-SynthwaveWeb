@@ -35,6 +35,8 @@ module.exports = {
         button: "#478AB1",
         form: "#478AB1",
         border: "#478AB1",
+        backgroundTop: '#120824',
+        backgroundBot: '#2c1444'
       },
       keyframes: {
         "wiggle": {

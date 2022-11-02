@@ -139,15 +139,15 @@ const MapPage = () => {
 
   return (
     // Wallpaper Background
-    <div className="bg-gradient-to-b from-purple-900 to-black bg-center bg-cover font-share-tech-mono flex flex-col items-center justify-center min-w-[100vw] min-h-[100vh]">
+    <div className="bg-gradient-to-b from-backgroundTop to-backgroundBot bg-center bg-cover font-share-tech-mono flex flex-col items-center justify-center min-w-[100vw] min-h-[100vh]">
       {/* Confetti */}
       {confetti && <Fireworks />}
 
       {/* Map */}
       {!finale && (
         <div className="relative w-[22rem] h-[95vh] mt-4 mb-3 flex flex-col">
-          <div className="absolute bg-red-100 w-full h-full blur-[.5rem] bg-gradient-to-r from-pink-500 to-blue-500"></div>
-          <div className="z-[1] relative bg-map bg-cover bg-center border-[.15rem] w-full h-full border-purple-800 rounded-xl">
+          {/* <div className="absolute bg-red-100 w-full h-full "></div> */}
+          <div className="z-[1] relative bg-map bg-cover bg-center w-full h-full rounded-xl">
             <ProgressBar
               scannedQR={scannedQR}
               totalQR={totalQR}
