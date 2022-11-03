@@ -20,8 +20,8 @@ const ProgressBar = ({ scannedQR, totalQR, setBadgeShow }) => {
         whileTap={{ scale: 0.9 }}
         onClick={() => setBadgeShow(true)}
       >
-        <div className="absolute w-full h-full animate-pulse cursor-pointer blur-[.5rem] bg-purple-500 rounded-2xl"></div>
-        <div className='z-[2] w-full h-full cursor-pointer bg-black rounded-2xl border-double border-4 border-purple-500 flex justify-center items-center p-2'>
+        <div className="absolute w-full h-full animate-pulse cursor-pointer blur-[.5rem] bg-neonPink rounded-2xl"></div>
+        <div className='z-[2] w-full h-full cursor-pointer bg-black rounded-2xl border-double border-4 border-neonPink flex justify-center items-center p-2'>
           <span class={`${scannedQR ? 'absolute -top-1 -right-1 h-4 w-4' : 'animate-none'}`}>
             <span class='animate-ping absolute h-4 w-4 rounded-full bg-purple-500 opacity-75'></span>
             <span class="absolute rounded-full h-4 w-4 bg-purple-500"></span>
@@ -34,8 +34,8 @@ const ProgressBar = ({ scannedQR, totalQR, setBadgeShow }) => {
         </div>
       </motion.div>
       <div className="relative flex w-full h-full">
-        <div className="absolute w-full h-full blur-[.5rem] animate-pulse bg-purple-500 rounded-2xl"></div>
-        <div className="z-[1] bg-black flex flex-col justify-center gap-2 px-4 w-full h-full rounded-2xl border-double border-4 border-purple-500">
+        <div className="absolute w-full h-full blur-[.5rem] animate-pulse bg-neonPink rounded-2xl"></div>
+        <div className="z-[1] bg-black flex flex-col justify-center gap-2 px-4 w-full h-full rounded-2xl border-double border-4 border-neonPink">
           {/* Progress Bar */}
           <div className="relative rounded-md bg-gray-200 shadow-md h-[1rem] w-[100%] flex flex-col">
             <motion.div
