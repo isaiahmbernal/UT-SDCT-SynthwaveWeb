@@ -14,7 +14,7 @@ const MapPage = () => {
       name: 'Lambo',
       info: 'This is a lamborghini, wow, so cool!',
       className:
-        'absolute fixed left-[23%] top-[51%] w-[5rem] h-[5rem] cursor-pointer',
+        'absolute fixed left-[45%] top-[48%] w-[5rem] h-[5rem] cursor-pointer',
       transition: { delay: 1.25 },
       src: '/images/icons/lambo.png',
       alt: '/images/icons/lambo_star.png',
@@ -32,7 +32,7 @@ const MapPage = () => {
       name: 'Entrance',
       info: "Entrance to the show, maybe there's some cool stuff here",
       className:
-        'absolute left-[45%] top-[55%] w-[5rem] h-[5rem] cursor-pointer',
+        'absolute left-[24%] top-[51%] w-[5rem] h-[5rem] cursor-pointer',
       transition: { delay: 1 },
       src: '/images/icons/entrance.png',
       alt: '/images/icons/entrance_star.png',
@@ -42,7 +42,7 @@ const MapPage = () => {
       info: "You're probably not gonna wanna miss this preshow",
       className:
         'absolute left-[18%] top-[3%] w-[5rem] h-[5rem] cursor-pointer',
-      transition: { delay: .25 },
+      transition: { delay: 0.25 },
       src: '/images/icons/live_performance.png',
       alt: '/images/icons/live_performance_star.png',
     },
@@ -50,8 +50,8 @@ const MapPage = () => {
       name: 'Outdoor Projection',
       info: 'Wow, look how pretty!',
       className:
-        'absolute left-[45%] top-[40%] w-[5rem] h-[5rem] cursor-pointer',
-      transition: { delay: .5 },
+        'absolute left-[32%] top-[37%] w-[5rem] h-[5rem] cursor-pointer',
+      transition: { delay: 0.5 },
       src: '/images/icons/outdoor_projection.png',
       alt: '/images/icons/outdoor_projection_star.png',
     },
@@ -87,6 +87,7 @@ const MapPage = () => {
   if (localStorage.getItem('codes') === null) {
     localStorage.setItem('codes', JSON.stringify(codes));
     localStorage.setItem('finale', false);
+    localStorage.setItem('recentScan', '');
   }
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -116,10 +117,12 @@ const MapPage = () => {
       } else if (Object.keys(progress).includes(code)) {
         console.log('*** That QR code looks legit!');
         console.log('Progress ', code + ':', progress[code]);
+
         progress[code] = true;
         console.log('New Progress ', code + ':', progress[code]);
         localStorage.setItem('codes', JSON.stringify(progress));
         console.log('New Local Storage:', progress);
+        localStorage.setItem('recentScan', code);
         setUpdating(false);
         setConfetti(true);
         setTimeout(() => {
@@ -144,14 +147,21 @@ const MapPage = () => {
       {confetti && <Fireworks />}
 
       {/* Map */}
-      {!finale && (
-        <div className="relative w-[22rem] h-[45rem] mt-4 mb-3 flex flex-col">
+
+      {!finale && !badgeShow && (
+        <motion.div
+          className="relative w-[22rem] h-[45rem] mt-4 mb-3 flex flex-col"
+          initial={{ x: -1000 }}
+          animate={{ x: 0 }}
+          transition={{ duration: 0.1 }}
+        >
           <div className="absolute bg-red-100 w-full h-full blur-[.5rem] bg-gradient-to-r from-pink-500 to-blue-500"></div>
           <div className="z-[1] relative bg-map bg-cover bg-center border-[.15rem] w-full h-full border-purple-800 rounded-xl shadow-md">
             <ProgressBar
               scannedQR={scannedQR}
               totalQR={totalQR}
               setBadgeShow={setBadgeShow}
+              markers={markers}
             />
             {!updating &&
               Object.entries(markers).map(([key, value]) => (
@@ -160,18 +170,19 @@ const MapPage = () => {
                   className={value.className}
                   initial={
                     progress[key]
-                      ? { y: -800, rotate: 5000 }
-                      : { scale: 0, rotate: 500 }
+                      ? { scale: 0, rotate: 1000 }
+                      : { scale: 0, opacity: 0 }
                   }
                   animate={
                     progress[key]
-                      ? { y: 0, rotate: 0 }
-                      : { scale: 1, rotate: 0 }
+                      ? { scale: 1, rotate: 0 }
+                      : { scale: 1, opacity: 1 }
                   }
-                  exit={{ y: 100 }}
-                  transition={value.transition}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.4 }}
+                  transition={
+                    progress[key]
+                      ? value.transition
+                      : { ...value.transition, duration: 0.75 }
+                  }
                 >
                   <img
                     className={
@@ -189,21 +200,28 @@ const MapPage = () => {
                 </motion.div>
               ))}
           </div>
-        </div>
+        </motion.div>
       )}
+
       <AnimatePresence>
         {infoShow && (
           <MapInfo selectedInfo={selectedInfo} setInfoShow={setInfoShow} />
         )}
       </AnimatePresence>
-      <AnimatePresence>
-        {badgeShow && (
-          <BadgeInfo setBadgeShow={setBadgeShow} scannedQR={scannedQR} />
-        )}
-      </AnimatePresence>
+
+      {badgeShow && (
+        <BadgeInfo
+          setBadgeShow={setBadgeShow}
+          scannedQR={scannedQR}
+          markers={markers}
+          progress={progress}
+        />
+      )}
+
       <AnimatePresence>
         {goodJob && <GoodJob scannedQR={scannedQR} totalQR={totalQR} />}
       </AnimatePresence>
+
       {/* <AnimatePresence>
         {goodJob && (
           <motion.img
