@@ -1,17 +1,19 @@
 import { motion } from 'framer-motion';
 
-const badgeIcons = [
-  '/images/icons/sun.png',
-  '/images/icons/shoe.png',
-  '/images/icons/scooter.png',
-  '/images/icons/bad_car.png',
-  '/images/icons/good_car.png',
-  '/images/icons/lambo_car.gif',
-  '/images/icons/lambo_car.gif',
-];
+// const badgeIcons = [
+//   '/images/icons/sun.png',
+//   '/images/icons/shoe.png',
+//   '/images/icons/scooter.png',
+//   '/images/icons/bad_car.png',
+//   '/images/icons/good_car.png',
+//   '/images/icons/lambo_car.gif',
+//   '/images/icons/lambo_car.gif',
+// ];
 
-const ProgressBar = ({ scannedQR, totalQR, setBadgeShow }) => {
+const ProgressBar = ({ scannedQR, totalQR, setBadgeShow, markers }) => {
   const fillPercent = (scannedQR / totalQR) * 100;
+  const recentCode = localStorage.getItem('recentScan');
+  console.log('Recent Code:', recentCode);
   return (
     <div className="absolute bottom-[2%] left-[4%] w-[92%] flex gap-2 h-[5rem] justify-between items-end">
       <motion.div
@@ -27,8 +29,11 @@ const ProgressBar = ({ scannedQR, totalQR, setBadgeShow }) => {
             <span class="absolute rounded-full h-4 w-4 bg-purple-500"></span>
           </span>
           <img
-            src={`${badgeIcons[scannedQR]}`}
-            alt='Badge'
+            src={
+              localStorage.getItem('recentScan') != ''
+                ? markers[localStorage.getItem('recentScan')].alt
+                : '/images/icons/sun.png'
+            }
             className="w-full h-full cursor-pointer animate-wiggle"
           />
         </div>
