@@ -30,10 +30,11 @@ const ProgressBar = ({ scannedQR, totalQR, setBadgeShow, markers }) => {
           </span>
           <img
             src={
-              localStorage.getItem('recentScan') != ''
+              localStorage.getItem('recentScan') !== ''
                 ? markers[localStorage.getItem('recentScan')].alt
                 : '/images/icons/sun.png'
             }
+            alt='sun'
             className="w-full h-full cursor-pointer animate-wiggle"
           />
         </div>

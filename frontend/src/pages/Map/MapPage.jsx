@@ -156,7 +156,7 @@ const MapPage = () => {
           transition={{ duration: 0.1 }}
         >
           <div className="absolute w-full h-full blur-[.5rem] bg-gradient-to-r from-pink-500 to-blue-500"></div>
-          <div className="z-[1] relative bg-map bg-cover bg-center  w-full h-full  shadow-md">
+          <div className="z-[1] relative bg-map bg-cover bg-center  w-full h-full shadow-md">
             <ProgressBar
               scannedQR={scannedQR}
               totalQR={totalQR}
