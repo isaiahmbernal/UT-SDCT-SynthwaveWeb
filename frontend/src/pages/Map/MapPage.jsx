@@ -150,7 +150,7 @@ const MapPage = () => {
 
       {!finale && !badgeShow && (
         <motion.div
-          className="relative max-w-[28rem] w-full h-screen min-h-[41rem] max-h-[47rem] flex flex-col"
+          className="relative max-w-[26rem] w-full h-screen min-h-[41rem] max-h-[45rem] flex flex-col"
           initial={{ x: -1000 }}
           animate={{ x: 0 }}
           transition={{ duration: 0.1 }}
