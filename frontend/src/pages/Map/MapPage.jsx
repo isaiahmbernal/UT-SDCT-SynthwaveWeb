@@ -23,7 +23,7 @@ const MapPage = () => {
       name: 'Stage',
       info: 'Cumque quas libero tempora magni beatae saepe nam. Voluptate et pariatur vel aperiam ipsum quisquam. Provident corporis eos recusandae quisquam veritatis corrupti non. Cumque quas libero tempora magni beatae saepe nam. Voluptate et pariatur vel aperiam ipsum quisquam. Provident corporis eos recusandae quisquam veritatis corrupti non.',
       className:
-        'absolute left-[0%] top-[42%] w-[5rem] h-[5rem] cursor-pointer',
+        'absolute left-[5%] top-[42%] w-[5rem] h-[5rem] cursor-pointer',
       transition: { delay: 0.75 },
       src: '/images/icons/stage.png',
       alt: '/images/icons/stage_star.png',
@@ -150,13 +150,13 @@ const MapPage = () => {
 
       {!finale && !badgeShow && (
         <motion.div
-          className="relative w-[22rem] h-[45rem] mt-4 mb-3 flex flex-col"
+          className="relative max-w-[28rem] w-full h-screen min-h-[41rem] max-h-[47rem] flex flex-col"
           initial={{ x: -1000 }}
           animate={{ x: 0 }}
           transition={{ duration: 0.1 }}
         >
-          <div className="absolute bg-red-100 w-full h-full blur-[.5rem] bg-gradient-to-r from-pink-500 to-blue-500"></div>
-          <div className="z-[1] relative bg-map bg-cover bg-center border-[.15rem] w-full h-full border-purple-800 rounded-xl shadow-md">
+          <div className="absolute w-full h-full blur-[.5rem] bg-gradient-to-r from-pink-500 to-blue-500"></div>
+          <div className="z-[1] relative bg-map bg-cover bg-center  w-full h-full  shadow-md">
             <ProgressBar
               scannedQR={scannedQR}
               totalQR={totalQR}
