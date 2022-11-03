@@ -147,7 +147,7 @@ const MapPage = () => {
       {!finale && (
         <div className="relative w-[22rem] h-[95vh] mt-4 mb-3 flex flex-col">
           {/* <div className="absolute bg-red-100 w-full h-full "></div> */}
-          <div className="z-[1] relative bg-map bg-cover bg-center w-full h-full rounded-xl">
+          <div className="z-[1] relative bg-map bg-cover bg-center w-full h-full rounded-2xl shadow-inner shadow-indigo-500/50">
             <ProgressBar
               scannedQR={scannedQR}
               totalQR={totalQR}
