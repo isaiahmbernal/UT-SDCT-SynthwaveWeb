@@ -24,9 +24,9 @@ const ProgressBar = ({ scannedQR, totalQR, setBadgeShow, markers }) => {
       >
         <div className="absolute w-full h-full animate-pulse cursor-pointer blur-[.5rem] bg-neonPink rounded-2xl"></div>
         <div className='z-[2] w-full h-full cursor-pointer bg-black rounded-2xl border-double border-4 border-neonPink flex justify-center items-center p-2'>
-          <span class={`${scannedQR ? 'absolute -top-1 -right-1 h-4 w-4' : 'animate-none'}`}>
-            <span class='animate-ping absolute h-4 w-4 rounded-full bg-purple-500 opacity-75'></span>
-            <span class="absolute rounded-full h-4 w-4 bg-purple-500"></span>
+          <span className={`${scannedQR ? 'absolute -top-1 -right-1 h-4 w-4' : 'animate-none'}`}>
+            <span className='animate-ping absolute h-4 w-4 rounded-full bg-purple-500 opacity-75'></span>
+            <span className="absolute rounded-full h-4 w-4 bg-purple-500"></span>
           </span>
           <img
             src={
