@@ -30,9 +30,9 @@ const BadgeInfo = ({ setBadgeShow, scannedQR, totalQR }) => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
-            <div className="z-[-1] absolute w-full h-full blur-[.5rem] rounded-xl border-double border-4 border-neonPink"></div>
+            <div className="z-[-1] absolute w-full h-full rounded-xl blur-[.5rem] animate-pulse bg-neonBlue"></div>
             <motion.button
-              className="bg-black text-white text-xl w-full h-full rounded-xl shadow-md flex justify-center items-center group"
+              className="bg-black text-white text-xl w-full h-full rounded-xl shadow-md flex justify-center items-center border-double border-4 border-neonBlue"
               onClick={() => setBadgeShow(false)}
             >
               <svg
@@ -52,8 +52,8 @@ const BadgeInfo = ({ setBadgeShow, scannedQR, totalQR }) => {
             </motion.button>
           </motion.div>
           <div className="relative w-full h-full">
-            <div className="z-[-1] rounded-xl absolute bg-gradient-to-r from-pink-500 to-blue-500 blur-[.5rem] w-full h-full flex justify-center items-center"></div>
-            <div className="bg-black rounded-xl w-full h-full flex justify-center items-center">
+            <div className="z-[-1] rounded-xl absolute w-full h-full flex justify-center items-center blur-[.5rem] animate-pulse bg-neonBlue"></div>
+            <div className="bg-black rounded-xl w-full h-full flex justify-center items-center border-double border-4 border-neonBlue">
               <h1 className="text-white text-xl">Badge Progress</h1>
             </div>
           </div>
