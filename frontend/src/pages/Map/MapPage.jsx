@@ -142,7 +142,7 @@ const MapPage = () => {
 
   return (
     // Wallpaper Background
-    <div className="bg-gradient-to-b from-backgroundTop to-backgroundBot bg-center bg-cover font-share-tech-mono flex flex-col items-center justify-center min-w-[100vw] min-h-[100vh]">
+    <div className="bg-gradient-to-b from-backgroundTop to-backgroundBot bg-center bg-cover font-share-tech-mono flex flex-col items-center justify-start min-w-[100vw] min-h-[100vh]">
       {/* Confetti */}
       {confetti && <Fireworks />}
 
