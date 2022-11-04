@@ -41,7 +41,7 @@ const MapPage = () => {
       name: 'Live Performance',
       info: "You're probably not gonna wanna miss this preshow",
       className:
-        'absolute left-[18%] top-[3%] w-[5rem] h-[5rem] cursor-pointer',
+        'absolute left-[18%] top-[1%] w-[5rem] h-[5rem] cursor-pointer',
       transition: { delay: 0.25 },
       src: '/images/icons/live_performance.png',
       alt: '/images/icons/live_performance_star.png',
@@ -150,7 +150,7 @@ const MapPage = () => {
 
       {!finale && !badgeShow && (
         <motion.div
-          className="relative max-w-[26rem] w-full h-screen min-h-[41rem] max-h-[45rem] flex flex-col"
+          className="relative max-w-[26rem] w-full h-screen min-h-[41.7rem] max-h-[43rem] flex flex-col"
           initial={{ x: -1000 }}
           animate={{ x: 0 }}
           transition={{ duration: 0.1 }}
