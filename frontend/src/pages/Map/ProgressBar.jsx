@@ -22,25 +22,30 @@ const ProgressBar = ({ scannedQR, totalQR, setBadgeShow, markers }) => {
         whileTap={{ scale: 0.9 }}
         onClick={() => setBadgeShow(true)}
       >
-        <div className="absolute w-full h-full cursor-pointer animate-custom-spin-slow blur-[.5rem] bg-gradient-to-r from-pink-500 to-blue-500 rounded-2xl"></div>
-        <div className="z-[2] w-full h-full cursor-pointer bg-black rounded-2xl flex justify-center items-center p-2">
+        <div className="absolute w-full h-full animate-pulse cursor-pointer blur-[.5rem] bg-neonPink rounded-2xl"></div>
+        <div className='z-[2] w-full h-full cursor-pointer bg-black rounded-2xl border-double border-4 border-neonPink flex justify-center items-center p-2'>
+          <span className={`${scannedQR ? 'absolute -top-1 -right-1 h-4 w-4' : 'animate-none'}`}>
+            <span className='animate-ping absolute h-4 w-4 rounded-full bg-purple-500 opacity-75'></span>
+            <span className="absolute rounded-full h-4 w-4 bg-purple-500"></span>
+          </span>
           <img
             src={
-              localStorage.getItem('recentScan') != ''
+              localStorage.getItem('recentScan') !== ''
                 ? markers[localStorage.getItem('recentScan')].alt
                 : '/images/icons/sun.png'
             }
+            alt='sun'
             className="w-full h-full cursor-pointer animate-wiggle"
           />
         </div>
       </motion.div>
       <div className="relative flex w-full h-full">
-        <div className="absolute w-full h-full blur-[.5rem] bg-gradient-to-r from-pink-500 to-blue-500 rounded-2xl"></div>
-        <div className="z-[1] bg-black flex flex-col justify-center gap-2 px-4 w-full h-full rounded-2xl">
+        <div className="absolute w-full h-full blur-[.5rem] animate-pulse bg-neonPink rounded-2xl"></div>
+        <div className="z-[1] bg-black flex flex-col justify-center gap-2 px-4 w-full h-full rounded-2xl border-double border-4 border-neonPink">
           {/* Progress Bar */}
           <div className="relative rounded-md bg-gray-200 shadow-md h-[1rem] w-[100%] flex flex-col">
             <motion.div
-              className="absolute h-full blur-[.5rem] bg-gradient-to-r from-pink-500 to-blue-500 rounded-lg"
+              className="absolute h-full blur-[.5rem] bg-white animate-pulse rounded-lg"
               initial={{ width: 0 }}
               animate={{ width: `${fillPercent}%` }}
               transition={{ duration: 1 }}

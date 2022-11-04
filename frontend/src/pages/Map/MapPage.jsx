@@ -142,7 +142,7 @@ const MapPage = () => {
 
   return (
     // Wallpaper Background
-    <div className="bg-gradient-to-b from-purple-900 to-black bg-center bg-cover font-share-tech-mono flex flex-col items-center min-w-[100vw] min-h-[100vh]">
+    <div className="bg-gradient-to-b from-backgroundTop to-backgroundBot bg-center bg-cover font-share-tech-mono flex flex-col items-center justify-center min-w-[100vw] min-h-[100vh]">
       {/* Confetti */}
       {confetti && <Fireworks />}
 
@@ -156,7 +156,7 @@ const MapPage = () => {
           transition={{ duration: 0.1 }}
         >
           <div className="absolute w-full h-full blur-[.5rem] bg-gradient-to-r from-pink-500 to-blue-500"></div>
-          <div className="z-[1] relative bg-map bg-cover bg-center  w-full h-full  shadow-md">
+          <div className="z-[1] relative bg-map bg-cover bg-center  w-full h-full shadow-md">
             <ProgressBar
               scannedQR={scannedQR}
               totalQR={totalQR}
