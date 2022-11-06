@@ -38,7 +38,7 @@ const Submission = ({ setBadgeShow, scannedQR, totalQR }) => {
         </p> */}
       </div>
 
-      <div className="flex bg-blue-100 max-w-[23rem] w-full flex-col gap-2">
+      <div className="flex max-w-[23rem] w-full flex-col gap-2">
         <p className="text-white font-bold text-2xl">Name:</p>
         <input
           type="text"
@@ -50,7 +50,7 @@ const Submission = ({ setBadgeShow, scannedQR, totalQR }) => {
         />
       </div>
 
-      <div className="flex flex-col bg-blue-100 max-w-[23rem] w-full gap-2">
+      <div className="flex flex-col max-w-[23rem] w-full gap-2">
         <p className="text-white font-bold text-2xl">Hometown:</p>
         <input
           type="text"
@@ -69,7 +69,7 @@ const Submission = ({ setBadgeShow, scannedQR, totalQR }) => {
         <option value="orange">Orange</option>
       </select>
 
-      <p className="text-white bg-blue-100 text-center max-w-[23rem] w-full font-bold text-3xl">
+      <p className="text-white text-center max-w-[23rem] w-full font-bold text-3xl">
         Score: {scannedQR}
       </p>
       <input hidden type="text" name="score" />
