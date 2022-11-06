@@ -13,8 +13,8 @@ import { useState } from 'react';
 // ];
 
 const Submission = ({ setBadgeShow, scannedQR, totalQR }) => {
-  const [name, setName] = useState('');
-  const [hometown, setHometown] = useState('');
+  // const [name, setName] = useState('');
+  // const [hometown, setHometown] = useState('');
 
   // useEffect(() => {
   //   console.log("Name:", name, "Hometown:", hometown);
@@ -26,7 +26,7 @@ const Submission = ({ setBadgeShow, scannedQR, totalQR }) => {
       // onSubmit={(event) => {
       //   event.preventDefault();
       // }}
-      action="http://synthwave.site/"
+      action="https://synthwave.site/"
       method="POST"
     >
       <div className="flex flex-col gap-4">
