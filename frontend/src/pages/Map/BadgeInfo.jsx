@@ -45,7 +45,7 @@ const BadgeInfo = ({ setBadgeShow, scannedQR, totalQR, markers, progress }) => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-6 min-h-[0rem] max-w-[17rem] w-full overflow-y-scroll p-2">
+        <div className="grid grid-cols-2 gap-6 min-h-[0rem] max-w-[15rem] w-full overflow-y-scroll p-2">
           {Object.entries(markers).map(([key, value]) => (
             <motion.div
               className="relative"

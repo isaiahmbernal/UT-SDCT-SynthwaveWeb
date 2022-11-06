@@ -15,7 +15,7 @@ const MapPage = () => {
       info: "Woah, where'd they get a lamborghini! 🤩",
       className:
         'absolute fixed left-[49%] top-[49%] w-[3.5rem] h-[3.5rem] cursor-pointer',
-      transition: { delay: 1.25 },
+      transition: { delay: .7 },
       src: '/images/icons/lambo.png',
       alt: '/images/icons/lambo_star.png',
     },
@@ -24,7 +24,7 @@ const MapPage = () => {
       info: 'Time to interact with some music 😎',
       className:
         'absolute left-[5%] top-[42%] w-[3.5rem] h-[3.5rem] cursor-pointer',
-      transition: { delay: 0.75 },
+      transition: { delay: 0.2 },
       src: '/images/icons/stage.png',
       alt: '/images/icons/stage_star.png',
     },
@@ -33,7 +33,7 @@ const MapPage = () => {
       info: "Maybe there's some cool stuff here 👀",
       className:
         'absolute left-[55%] top-[43%] w-[3.5rem] h-[3.5rem] cursor-pointer',
-      transition: { delay: 1 },
+      transition: { delay: .3 },
       src: '/images/icons/entrance.png',
       alt: '/images/icons/entrance_star.png',
     },
@@ -41,8 +41,8 @@ const MapPage = () => {
       name: 'Live Performance',
       info: "It's time to ride the synthwave 🏄",
       className:
-        'absolute left-[18%] top-[1%] w-[3.5rem] h-[3.5rem] cursor-pointer',
-      transition: { delay: 0.25 },
+        'absolute left-[21%] top-[5%] w-[3.5rem] h-[3.5rem] cursor-pointer',
+      transition: { delay: 0.1 },
       src: '/images/icons/live_performance.png',
       alt: '/images/icons/live_performance_star.png',
     },
@@ -51,7 +51,7 @@ const MapPage = () => {
       info: 'Wow, how pretty 📽',
       className:
         'absolute left-[38%] top-[39%] w-[3.5rem] h-[3.5rem] cursor-pointer',
-      transition: { delay: 0.5 },
+      transition: { delay: 0.4 },
       src: '/images/icons/outdoor_projection.png',
       alt: '/images/icons/outdoor_projection_star.png',
     },
@@ -60,7 +60,7 @@ const MapPage = () => {
       info: "1v1 me, let's go",
       className:
         'absolute left-[29%] top-[51%] w-[3.5rem] h-[3.5rem] cursor-pointer',
-      transition: { delay: 1.5 },
+      transition: { delay: .5 },
       src: '/images/icons/games.png',
       alt: '/images/icons/games_star.png',
     },
@@ -69,27 +69,27 @@ const MapPage = () => {
       info: "Please, don't swim",
       className:
         'absolute left-[60%] top-[72%] w-[3.5rem] h-[3.5rem] cursor-pointer',
-      transition: { delay: 1.5 },
-      src: '/images/icons/games.png',
-      alt: '/images/icons/games_star.png',
+      transition: { delay: .9 },
+      src: '/images/icons/river_star.png',
+      alt: '/images/icons/river_star.png',
     },
     bike: {
       name: 'Light Bike',
       info: "Please, don't go for a ride",
       className:
         'absolute left-[66%] top-[58%] w-[3.5rem] h-[3.5rem] cursor-pointer',
-      transition: { delay: 1.5 },
-      src: '/images/icons/games.png',
-      alt: '/images/icons/games_star.png',
+      transition: { delay: .6 },
+      src: '/images/icons/bike_star.png',
+      alt: '/images/icons/bike_star.png',
     },
     steprepeat: {
       name: 'Step & Repeat',
       info: "Smile and wave, smile and wave.",
       className:
         'absolute left-[51%] top-[55%] w-[3.5rem] h-[3.5rem] cursor-pointer',
-      transition: { delay: 1.5 },
-      src: '/images/icons/games.png',
-      alt: '/images/icons/games_star.png',
+      transition: { delay: .8 },
+      src: '/images/icons/steprepeat_star.png',
+      alt: '/images/icons/steprepeat_star.png',
     },
   };
 
@@ -103,12 +103,16 @@ const MapPage = () => {
   const navigate = useNavigate();
 
   const codes = {
-    entrance: false,
     lambo: false,
     stage: false,
+    lobby: false,
+    river: false,
+    // finale: false,
     projection: false,
-    concert: false,
     games: false,
+    river: false,
+    bike: false,
+    steprepeat: false,
   };
 
   if (localStorage.getItem('codes') === null) {
@@ -221,7 +225,7 @@ const MapPage = () => {
                     className={
                       progress[key]
                         ? 'animate-wiggle hover:animate-custom-spin'
-                        : 'hover:animate-custom-bounce'
+                        : 'hover:animate-custom-bounce saturate-0'
                     }
                     src={progress[key] ? value.alt : value.src}
                     key={key}
