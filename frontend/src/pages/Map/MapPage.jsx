@@ -15,7 +15,7 @@ const MapPage = () => {
       info: "Woah, where'd they get a lamborghini! 🤩",
       className:
         'absolute fixed left-[49%] top-[49%] w-[3.5rem] h-[3.5rem] cursor-pointer',
-      transition: { delay: .7 },
+      transition: { delay: 0.7 },
       src: '/images/icons/lambo.png',
       alt: '/images/icons/lambo_star.png',
     },
@@ -33,19 +33,11 @@ const MapPage = () => {
       info: "Maybe there's some cool stuff here 👀",
       className:
         'absolute left-[55%] top-[43%] w-[3.5rem] h-[3.5rem] cursor-pointer',
-      transition: { delay: .3 },
+      transition: { delay: 0.3 },
       src: '/images/icons/entrance.png',
       alt: '/images/icons/entrance_star.png',
     },
-    finale: {
-      name: 'Live Performance',
-      info: "It's time to ride the synthwave 🏄",
-      className:
-        'absolute left-[21%] top-[5%] w-[3.5rem] h-[3.5rem] cursor-pointer',
-      transition: { delay: 0.1 },
-      src: '/images/icons/live_performance.png',
-      alt: '/images/icons/live_performance_star.png',
-    },
+
     projection: {
       name: 'Outdoor Projection',
       info: 'Wow, how pretty 📽',
@@ -60,7 +52,7 @@ const MapPage = () => {
       info: "1v1 me, let's go",
       className:
         'absolute left-[29%] top-[51%] w-[3.5rem] h-[3.5rem] cursor-pointer',
-      transition: { delay: .5 },
+      transition: { delay: 0.5 },
       src: '/images/icons/games.png',
       alt: '/images/icons/games_star.png',
     },
@@ -69,7 +61,7 @@ const MapPage = () => {
       info: "Please, don't swim",
       className:
         'absolute left-[60%] top-[72%] w-[3.5rem] h-[3.5rem] cursor-pointer',
-      transition: { delay: .9 },
+      transition: { delay: 0.9 },
       src: '/images/icons/river_star.png',
       alt: '/images/icons/river_star.png',
     },
@@ -78,18 +70,27 @@ const MapPage = () => {
       info: "Please, don't go for a ride",
       className:
         'absolute left-[66%] top-[58%] w-[3.5rem] h-[3.5rem] cursor-pointer',
-      transition: { delay: .6 },
+      transition: { delay: 0.6 },
       src: '/images/icons/bike_star.png',
       alt: '/images/icons/bike_star.png',
     },
     steprepeat: {
       name: 'Step & Repeat',
-      info: "Smile and wave, smile and wave.",
+      info: 'Smile and wave, smile and wave.',
       className:
         'absolute left-[51%] top-[55%] w-[3.5rem] h-[3.5rem] cursor-pointer',
-      transition: { delay: .8 },
+      transition: { delay: 0.8 },
       src: '/images/icons/steprepeat_star.png',
       alt: '/images/icons/steprepeat_star.png',
+    },
+    finale: {
+      name: 'Live Performance',
+      info: "It's time to ride the synthwave 🏄",
+      className:
+        'absolute left-[21%] top-[5%] w-[3.5rem] h-[3.5rem] cursor-pointer',
+      transition: { delay: 0.1 },
+      src: '/images/icons/live_performance.png',
+      alt: '/images/icons/live_performance_star.png',
     },
   };
 
