@@ -13,84 +13,66 @@ const MapPage = () => {
     lambo: {
       name: 'Lambo',
       info: "Woah, where'd they get a lamborghini! 🤩",
-      className:
-        'absolute fixed left-[49%] top-[49%] w-[3.5rem] h-[3.5rem] cursor-pointer',
+      className: 'left-[51%] top-[49.3%]',
       transition: { delay: 0.7 },
-      src: '/images/icons/lambo.png',
-      alt: '/images/icons/lambo_star.png',
+      src: '/images/icons/lambo_star.png',
     },
     stage: {
       name: 'Interactive Music',
       info: 'Time to interact with some music 😎',
-      className:
-        'absolute left-[5%] top-[42%] w-[3.5rem] h-[3.5rem] cursor-pointer',
+      className: 'left-[14%] top-[46%]',
       transition: { delay: 0.2 },
-      src: '/images/icons/stage.png',
-      alt: '/images/icons/stage_star.png',
+      src: '/images/icons/stage_star.png',
     },
     lobby: {
       name: 'Lobby',
       info: "Maybe there's some cool stuff here 👀",
-      className:
-        'absolute left-[55%] top-[43%] w-[3.5rem] h-[3.5rem] cursor-pointer',
+      className: 'left-[20%] top-[15.5%]',
       transition: { delay: 0.3 },
-      src: '/images/icons/entrance.png',
-      alt: '/images/icons/entrance_star.png',
+      src: '/images/icons/entrance_star.png',
     },
 
     projection: {
       name: 'Outdoor Projection',
       info: 'Wow, how pretty 📽',
-      className:
-        'absolute left-[38%] top-[39%] w-[3.5rem] h-[3.5rem] cursor-pointer',
+      className: 'left-[38%] top-[40%]',
       transition: { delay: 0.4 },
-      src: '/images/icons/outdoor_projection.png',
-      alt: '/images/icons/outdoor_projection_star.png',
+      src: '/images/icons/outdoor_projection_star.png',
     },
     games: {
       name: 'Games',
       info: "1v1 me, let's go",
-      className:
-        'absolute left-[29%] top-[51%] w-[3.5rem] h-[3.5rem] cursor-pointer',
+      className: 'left-[32%] top-[53%]',
       transition: { delay: 0.5 },
-      src: '/images/icons/games.png',
-      alt: '/images/icons/games_star.png',
+      src: '/images/icons/games_star.png',
     },
     river: {
       name: 'River of Light',
       info: "Please, don't swim",
-      className:
-        'absolute left-[60%] top-[72%] w-[3.5rem] h-[3.5rem] cursor-pointer',
+      className: 'left-[60%] top-[72%]',
       transition: { delay: 0.9 },
       src: '/images/icons/river_star.png',
-      alt: '/images/icons/river_star.png',
     },
     bike: {
       name: 'Light Bike',
       info: "Please, don't go for a ride",
-      className:
-        'absolute left-[66%] top-[58%] w-[3.5rem] h-[3.5rem] cursor-pointer',
+      className: 'left-[35%] top-[80%]',
       transition: { delay: 0.6 },
       src: '/images/icons/bike_star.png',
-      alt: '/images/icons/bike_star.png',
     },
     steprepeat: {
       name: 'Step & Repeat',
       info: 'Smile and wave, smile and wave.',
-      className:
-        'absolute left-[51%] top-[55%] w-[3.5rem] h-[3.5rem] cursor-pointer',
+      className: 'left-[53%] top-[55%]',
       transition: { delay: 0.8 },
       src: '/images/icons/steprepeat_star.png',
-      alt: '/images/icons/steprepeat_star.png',
     },
     finale: {
       name: 'Live Performance',
       info: "It's time to ride the synthwave 🏄",
-      className:
-        'absolute left-[21%] top-[5%] w-[3.5rem] h-[3.5rem] cursor-pointer',
+      className: 'left-[36%] top-[9%]',
       transition: { delay: 0.1 },
-      src: '/images/icons/live_performance.png',
-      alt: '/images/icons/live_performance_star.png',
+      src: '/images/icons/live_performance_star.png',
     },
   };
 
@@ -194,7 +176,7 @@ const MapPage = () => {
           transition={{ duration: 0.1 }}
         >
           <div className="absolute w-full h-full blur-[.5rem] bg-gradient-to-r from-pink-500 to-blue-500"></div>
-          <div className="z-[1] relative bg-map bg-cover bg-center  w-full h-full shadow-md">
+          <div className="z-[1] relative bg-map bg-cover bg-center w-full h-full shadow-md">
             <ProgressBar
               scannedQR={scannedQR}
               totalQR={totalQR}
@@ -205,16 +187,21 @@ const MapPage = () => {
               Object.entries(markers).map(([key, value]) => (
                 <motion.div
                   key={key}
-                  className={value.className}
+                  className={
+                    value.className +
+                    ` absolute w-[2.5rem] h-[2.5rem] cursor-pointer ${
+                      progress[key] ? 'animate-custom-pulse' : ''
+                    }`
+                  }
+                  onClick={() => {
+                    setSelectedInfo(value);
+                    setInfoShow(true);
+                  }}
                   initial={
-                    progress[key]
-                      ? { scale: 0, rotate: 1000 }
-                      : { scale: 0, opacity: 0 }
+                    progress[key] ? { scale: 0 } : { scale: 0, opacity: 0 }
                   }
                   animate={
-                    progress[key]
-                      ? { scale: 1, rotate: 0 }
-                      : { scale: 1, opacity: 1 }
+                    progress[key] ? { scale: 1 } : { scale: 1, opacity: 1 }
                   }
                   transition={
                     progress[key]
@@ -225,15 +212,15 @@ const MapPage = () => {
                   <img
                     className={
                       progress[key]
-                        ? 'animate-wiggle hover:animate-custom-spin'
-                        : 'hover:animate-custom-bounce saturate-0'
+                        ? 'pointer-events-none absolute animate-custom-spin-slow min-w-[12.5rem] min-h-[12.5rem] -left-[200%] -top-[200%]'
+                        : 'pointer-events-none'
                     }
-                    src={progress[key] ? value.alt : value.src}
+                    src={
+                      progress[key]
+                        ? '/images/icons/GlowIconCompleted.png'
+                        : '/images/icons/GlowIcon.png'
+                    }
                     key={key}
-                    onClick={() => {
-                      setSelectedInfo(value);
-                      setInfoShow(true);
-                    }}
                   />
                 </motion.div>
               ))}

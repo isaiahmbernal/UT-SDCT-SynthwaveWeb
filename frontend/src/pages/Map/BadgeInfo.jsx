@@ -64,7 +64,7 @@ const BadgeInfo = ({ setBadgeShow, scannedQR, totalQR, markers, progress }) => {
                 // key={value}
               >
                 <img
-                  src={progress[key] ? value.alt : value.src}
+                  src={value.src}
                   className={`${
                     progress[key] ? 'animate-wiggle' : 'brightness-[6%]'
                   }`}
