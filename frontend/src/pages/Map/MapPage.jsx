@@ -189,8 +189,8 @@ const MapPage = () => {
                   key={key}
                   className={
                     value.className +
-                    ` absolute w-[2.5rem] h-[2.5rem] cursor-pointer ${
-                      progress[key] ? 'animate-custom-pulse' : ''
+                    ` absolute cursor-pointer ${
+                      progress[key] ? 'w-[2.5rem] h-[2.5rem]' : 'animate-stretch w-[2rem] h-[2rem] '
                     }`
                   }
                   onClick={() => {
@@ -212,16 +212,25 @@ const MapPage = () => {
                   <img
                     className={
                       progress[key]
-                        ? 'pointer-events-none absolute animate-custom-spin-slow min-w-[12.5rem] min-h-[12.5rem] -left-[200%] -top-[200%]'
-                        : 'pointer-events-none'
+                        ? 'absolute pointer-events-none saturate-200 hue-rotate-[260deg] brightness-[300%]'
+                        : 'absolute pointer-events-none saturate-200 hue-rotate-[320deg] brightness-150'
                     }
                     src={
                       progress[key]
-                        ? '/images/icons/GlowIconCompleted.png'
+                        ? '/images/icons/GlowIcon.png'
                         : '/images/icons/GlowIcon.png'
                     }
                     key={key}
                   />
+                  {!progress[key] && (
+                    <img
+                      className={
+                        'absolute pointer-events-none saturate-200 hue-rotate-[320deg] brightness-150 animate-custom-ping'
+                      }
+                      src={'/images/icons/GlowIcon.png'}
+                      key={key}
+                    />
+                  )}
                 </motion.div>
               ))}
           </div>

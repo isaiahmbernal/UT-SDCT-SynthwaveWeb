@@ -24,6 +24,10 @@ module.exports = {
         "wiggle": {
           "0%, 100%": { transform: "rotate(-6deg)" },
           "50%": { transform: "rotate(6deg)" },
+        },
+        "stretch": {
+          "0%, 100%": { transform: "scale(110%)" },
+          "50%": { transform: "scale(80%)" },
         }
       },
       animation: {
@@ -31,7 +35,9 @@ module.exports = {
         "custom-spin": "spin 1s infinite",
         "custom-pulse": "pulse 3s linear infinite",
         "custom-spin-slow": "spin 3s linear infinite",
-        "wiggle": "wiggle 1.5s ease-in-out infinite"
+        "wiggle": "wiggle 1.5s ease-in-out infinite",
+        "stretch": "stretch 3s linear infinite",
+        "custom-ping": "ping 1.5s linear infinite"
       },
     },
   },
