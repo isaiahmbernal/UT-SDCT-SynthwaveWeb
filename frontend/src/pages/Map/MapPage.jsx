@@ -12,57 +12,84 @@ const MapPage = () => {
   const markers = {
     lambo: {
       name: 'Lambo',
-      info: 'This is a lamborghini, wow, so cool!',
-      className:
-        'absolute fixed left-[45%] top-[48%] w-[5rem] h-[5rem] cursor-pointer',
-      transition: { delay: 1.25 },
-      src: '/images/icons/lambo.png',
-      alt: '/images/icons/lambo_star.png',
+      info: "Woah, where'd they get a lamborghini! 🤩",
+      className: 'left-[53%] top-[49.3%]',
+      transition: { delay: 0.7 },
+      src: '/images/icons/MarkerGreenRight.png',
+      alt: '/images/icons/MarkerRedRight.png',
+      badge: "/images/icons/lambo_star.png"
     },
     stage: {
-      name: 'Stage',
-      info: 'Cumque quas libero tempora magni beatae saepe nam. Voluptate et pariatur vel aperiam ipsum quisquam. Provident corporis eos recusandae quisquam veritatis corrupti non. Cumque quas libero tempora magni beatae saepe nam. Voluptate et pariatur vel aperiam ipsum quisquam. Provident corporis eos recusandae quisquam veritatis corrupti non.',
-      className:
-        'absolute left-[5%] top-[42%] w-[5rem] h-[5rem] cursor-pointer',
-      transition: { delay: 0.75 },
-      src: '/images/icons/stage.png',
-      alt: '/images/icons/stage_star.png',
+      name: 'Interactive Music',
+      info: 'Time to interact with some music 😎',
+      className: 'left-[19%] top-[46%]',
+      transition: { delay: 0.2 },
+      src: '/images/icons/MarkerGreenLeft.png',
+      alt: '/images/icons/MarkerRedLeft.png',
+      badge: "/images/icons/stage_star.png"
     },
-    entrance: {
-      name: 'Entrance',
-      info: "Entrance to the show, maybe there's some cool stuff here",
-      className:
-        'absolute left-[24%] top-[51%] w-[5rem] h-[5rem] cursor-pointer',
-      transition: { delay: 1 },
-      src: '/images/icons/entrance.png',
-      alt: '/images/icons/entrance_star.png',
-    },
-    concert: {
-      name: 'Live Performance',
-      info: "You're probably not gonna wanna miss this preshow",
-      className:
-        'absolute left-[18%] top-[3%] w-[5rem] h-[5rem] cursor-pointer',
-      transition: { delay: 0.25 },
-      src: '/images/icons/live_performance.png',
-      alt: '/images/icons/live_performance_star.png',
+    lobby: {
+      name: 'Lobby',
+      info: "Maybe there's some cool stuff here 👀",
+      className: 'left-[23%] top-[15%]',
+      transition: { delay: 0.3 },
+      src: '/images/icons/MarkerGreenLeft.png',
+      alt: '/images/icons/MarkerRedLeft.png',
+      badge: "/images/icons/entrance_star.png"
     },
     projection: {
       name: 'Outdoor Projection',
-      info: 'Wow, look how pretty!',
-      className:
-        'absolute left-[32%] top-[37%] w-[5rem] h-[5rem] cursor-pointer',
-      transition: { delay: 0.5 },
-      src: '/images/icons/outdoor_projection.png',
-      alt: '/images/icons/outdoor_projection_star.png',
+      info: 'Wow, how pretty 📽',
+      className: 'left-[43%] top-[45%]',
+      transition: { delay: 0.4 },
+      src: '/images/icons/MarkerGreenRight.png',
+      alt: '/images/icons/MarkerRedRight.png',
+      badge: "/images/icons/outdoor_projection_star.png"
     },
     games: {
-      name: 'Block World',
-      info: "Block world, it can't get any better than this",
-      className:
-        'absolute left-[60%] top-[70%] w-[5rem] h-[5rem] cursor-pointer',
-      transition: { delay: 1.5 },
-      src: '/images/icons/games.png',
-      alt: '/images/icons/games_star.png',
+      name: 'Games',
+      info: "1v1 me, let's go",
+      className: 'left-[38%] top-[53%]',
+      transition: { delay: 0.5 },
+      src: '/images/icons/MarkerGreenLeft.png',
+      alt: '/images/icons/MarkerRedLeft.png',
+      badge: "/images/icons/games_star.png"
+    },
+    river: {
+      name: 'River of Light',
+      info: "Please, don't swim",
+      className: 'left-[60%] top-[71%]',
+      transition: { delay: 0.9 },
+      src: '/images/icons/MarkerGreenLeft.png',
+      alt: '/images/icons/MarkerRedLeft.png',
+      badge: "/images/icons/river_star.png"
+    },
+    bike: {
+      name: 'Light Bike',
+      info: "Please, don't go for a ride",
+      className: 'left-[40%] top-[80%]',
+      transition: { delay: 0.6 },
+      src: '/images/icons/MarkerGreenRight.png',
+      alt: '/images/icons/MarkerRedRight.png',
+      badge: "/images/icons/bike_star.png"
+    },
+    steprepeat: {
+      name: 'Step & Repeat',
+      info: 'Smile and wave, smile and wave.',
+      className: 'left-[53%] top-[55%]',
+      transition: { delay: 0.8 },
+      src: '/images/icons/MarkerGreenRight.png',
+      alt: '/images/icons/MarkerRedRight.png',
+      badge: "/images/icons/steprepeat_star.png"
+    },
+    finale: {
+      name: 'Live Performance',
+      info: "It's time to ride the synthwave 🏄",
+      className: 'left-[33%] top-[6.5%]',
+      transition: { delay: 0.1 },
+      src: '/images/icons/MarkerGreenLeft.png',
+      alt: '/images/icons/MarkerRedLeft.png',
+      badge: "/images/icons/live_performance_star.png"
     },
   };
 
@@ -76,12 +103,16 @@ const MapPage = () => {
   const navigate = useNavigate();
 
   const codes = {
-    entrance: false,
     lambo: false,
     stage: false,
+    lobby: false,
+    river: false,
+    // finale: false,
     projection: false,
-    concert: false,
     games: false,
+    river: false,
+    bike: false,
+    steprepeat: false,
   };
 
   if (localStorage.getItem('codes') === null) {
@@ -113,11 +144,17 @@ const MapPage = () => {
     } else if (code) {
       if (code == 'finale') {
         localStorage.setItem('finale', true);
+        console.log('*** That QR code looks legit!');
+        console.log('Progress ', code + ':', progress[code]);
+        progress[code] = true;
+        console.log('New Progress ', code + ':', progress[code]);
+        localStorage.setItem('codes', JSON.stringify(progress));
+        console.log('New Local Storage:', progress);
+        localStorage.setItem('recentScan', code);
         setFinale(true);
       } else if (Object.keys(progress).includes(code)) {
         console.log('*** That QR code looks legit!');
         console.log('Progress ', code + ':', progress[code]);
-
         progress[code] = true;
         console.log('New Progress ', code + ':', progress[code]);
         localStorage.setItem('codes', JSON.stringify(progress));
@@ -142,7 +179,7 @@ const MapPage = () => {
 
   return (
     // Wallpaper Background
-    <div className="bg-gradient-to-b from-backgroundTop to-backgroundBot bg-center bg-cover font-share-tech-mono flex flex-col items-center justify-center min-w-[100vw] min-h-[100vh]">
+    <div className="bg-gradient-to-b from-backgroundTop to-backgroundBot bg-center bg-cover font-share-tech-mono flex flex-col items-center justify-start min-w-[100vw] min-h-[100vh]">
       {/* Confetti */}
       {confetti && <Fireworks />}
 
@@ -150,13 +187,13 @@ const MapPage = () => {
 
       {!finale && !badgeShow && (
         <motion.div
-          className="relative max-w-[26rem] w-full h-screen min-h-[41rem] max-h-[45rem] flex flex-col"
+          className="relative max-w-[26rem] w-full h-screen min-h-[41.7rem] max-h-[43rem] flex flex-col"
           initial={{ x: -1000 }}
           animate={{ x: 0 }}
           transition={{ duration: 0.1 }}
         >
           <div className="absolute w-full h-full blur-[.5rem] bg-gradient-to-r from-pink-500 to-blue-500"></div>
-          <div className="z-[1] relative bg-map bg-cover bg-center  w-full h-full shadow-md">
+          <div className="z-[1] relative bg-map bg-cover bg-center w-full h-full shadow-md">
             <ProgressBar
               scannedQR={scannedQR}
               totalQR={totalQR}
@@ -167,16 +204,23 @@ const MapPage = () => {
               Object.entries(markers).map(([key, value]) => (
                 <motion.div
                   key={key}
-                  className={value.className}
+                  className={
+                    value.className +
+                    ` absolute cursor-pointer ${
+                      progress[key]
+                        ? 'w-[2rem] h-[2rem] hover:animate-custom-bounce'
+                        : 'w-[2rem] h-[2rem] hover:animate-custom-bounce'
+                    }`
+                  }
+                  onClick={() => {
+                    setSelectedInfo(value);
+                    setInfoShow(true);
+                  }}
                   initial={
-                    progress[key]
-                      ? { scale: 0, rotate: 1000 }
-                      : { scale: 0, opacity: 0 }
+                    progress[key] ? { scale: 0 } : { scale: 0, opacity: 0 }
                   }
                   animate={
-                    progress[key]
-                      ? { scale: 1, rotate: 0 }
-                      : { scale: 1, opacity: 1 }
+                    progress[key] ? { scale: 1 } : { scale: 1, opacity: 1 }
                   }
                   transition={
                     progress[key]
@@ -187,16 +231,19 @@ const MapPage = () => {
                   <img
                     className={
                       progress[key]
-                        ? 'animate-wiggle hover:animate-custom-spin'
-                        : 'hover:animate-custom-bounce'
+                        ? 'absolute pointer-events-none'
+                        : 'absolute pointer-events-none'
                     }
-                    src={progress[key] ? value.alt : value.src}
-                    key={key}
-                    onClick={() => {
-                      setSelectedInfo(value);
-                      setInfoShow(true);
-                    }}
+                    src={progress[key] ? value.src : value.alt}
                   />
+                  {!progress[key] && (
+                    <img
+                      className={
+                        'absolute left-[30%] top-[22%] w-[1rem] h-[1rem] pointer-events-none saturate-200 hue-rotate-[320deg] brightness-150 animate-custom-ping'
+                      }
+                      src={'/images/icons/GlowIcon.png'}
+                    />
+                  )}
                 </motion.div>
               ))}
           </div>

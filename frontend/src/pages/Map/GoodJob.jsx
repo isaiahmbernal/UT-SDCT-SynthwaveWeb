@@ -11,7 +11,7 @@ const GoodJob = ({ scannedQR, totalQR }) => {
       key="map-info"
     >
       <div className="z-[-1] absolute w-full h-full blur-[.5rem] bg-gradient-to-r from-pink-500 to-blue-500"></div>
-      <div className="w-full h-full bg-black text-white text-xl text-center rounded-xl flex flex-col px-10 py-4 justify-between items-center">
+      <div className="w-full h-full bg-black/90 text-white text-xl text-center rounded-xl flex flex-col px-10 py-4 justify-between items-center">
         <h1>Good Job!</h1>
         <p>
           You've scanned {scannedQR} out of {totalQR} QR codes!
