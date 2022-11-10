@@ -13,66 +13,83 @@ const MapPage = () => {
     lambo: {
       name: 'Lambo',
       info: "Woah, where'd they get a lamborghini! 🤩",
-      className: 'left-[51%] top-[49.3%]',
+      className: 'left-[53%] top-[49.3%]',
       transition: { delay: 0.7 },
-      src: '/images/icons/lambo_star.png',
+      src: '/images/icons/MarkerGreenRight.png',
+      alt: '/images/icons/MarkerRedRight.png',
+      badge: "/images/icons/lambo_star.png"
     },
     stage: {
       name: 'Interactive Music',
       info: 'Time to interact with some music 😎',
-      className: 'left-[14%] top-[46%]',
+      className: 'left-[19%] top-[46%]',
       transition: { delay: 0.2 },
-      src: '/images/icons/stage_star.png',
+      src: '/images/icons/MarkerGreenLeft.png',
+      alt: '/images/icons/MarkerRedLeft.png',
+      badge: "/images/icons/stage_star.png"
     },
     lobby: {
       name: 'Lobby',
       info: "Maybe there's some cool stuff here 👀",
-      className: 'left-[20%] top-[15.5%]',
+      className: 'left-[23%] top-[15%]',
       transition: { delay: 0.3 },
-      src: '/images/icons/entrance_star.png',
+      src: '/images/icons/MarkerGreenLeft.png',
+      alt: '/images/icons/MarkerRedLeft.png',
+      badge: "/images/icons/entrance_star.png"
     },
-
     projection: {
       name: 'Outdoor Projection',
       info: 'Wow, how pretty 📽',
-      className: 'left-[38%] top-[40%]',
+      className: 'left-[43%] top-[45%]',
       transition: { delay: 0.4 },
-      src: '/images/icons/outdoor_projection_star.png',
+      src: '/images/icons/MarkerGreenRight.png',
+      alt: '/images/icons/MarkerRedRight.png',
+      badge: "/images/icons/outdoor_projection_star.png"
     },
     games: {
       name: 'Games',
       info: "1v1 me, let's go",
-      className: 'left-[32%] top-[53%]',
+      className: 'left-[38%] top-[53%]',
       transition: { delay: 0.5 },
-      src: '/images/icons/games_star.png',
+      src: '/images/icons/MarkerGreenLeft.png',
+      alt: '/images/icons/MarkerRedLeft.png',
+      badge: "/images/icons/games_star.png"
     },
     river: {
       name: 'River of Light',
       info: "Please, don't swim",
-      className: 'left-[60%] top-[72%]',
+      className: 'left-[60%] top-[71%]',
       transition: { delay: 0.9 },
-      src: '/images/icons/river_star.png',
+      src: '/images/icons/MarkerGreenLeft.png',
+      alt: '/images/icons/MarkerRedLeft.png',
+      badge: "/images/icons/river_star.png"
     },
     bike: {
       name: 'Light Bike',
       info: "Please, don't go for a ride",
-      className: 'left-[35%] top-[80%]',
+      className: 'left-[40%] top-[80%]',
       transition: { delay: 0.6 },
-      src: '/images/icons/bike_star.png',
+      src: '/images/icons/MarkerGreenRight.png',
+      alt: '/images/icons/MarkerRedRight.png',
+      badge: "/images/icons/bike_star.png"
     },
     steprepeat: {
       name: 'Step & Repeat',
       info: 'Smile and wave, smile and wave.',
       className: 'left-[53%] top-[55%]',
       transition: { delay: 0.8 },
-      src: '/images/icons/steprepeat_star.png',
+      src: '/images/icons/MarkerGreenRight.png',
+      alt: '/images/icons/MarkerRedRight.png',
+      badge: "/images/icons/steprepeat_star.png"
     },
     finale: {
       name: 'Live Performance',
       info: "It's time to ride the synthwave 🏄",
-      className: 'left-[36%] top-[9%]',
+      className: 'left-[33%] top-[6.5%]',
       transition: { delay: 0.1 },
-      src: '/images/icons/live_performance_star.png',
+      src: '/images/icons/MarkerGreenLeft.png',
+      alt: '/images/icons/MarkerRedLeft.png',
+      badge: "/images/icons/live_performance_star.png"
     },
   };
 
@@ -190,7 +207,9 @@ const MapPage = () => {
                   className={
                     value.className +
                     ` absolute cursor-pointer ${
-                      progress[key] ? 'w-[2.5rem] h-[2.5rem]' : 'animate-stretch w-[2rem] h-[2rem] '
+                      progress[key]
+                        ? 'w-[2rem] h-[2rem] hover:animate-custom-bounce'
+                        : 'w-[2rem] h-[2rem] hover:animate-custom-bounce'
                     }`
                   }
                   onClick={() => {
@@ -212,23 +231,17 @@ const MapPage = () => {
                   <img
                     className={
                       progress[key]
-                        ? 'absolute pointer-events-none saturate-200 hue-rotate-[260deg] brightness-[300%]'
-                        : 'absolute pointer-events-none saturate-200 hue-rotate-[320deg] brightness-150'
+                        ? 'absolute pointer-events-none'
+                        : 'absolute pointer-events-none'
                     }
-                    src={
-                      progress[key]
-                        ? '/images/icons/GlowIcon.png'
-                        : '/images/icons/GlowIcon.png'
-                    }
-                    key={key}
+                    src={progress[key] ? value.src : value.alt}
                   />
                   {!progress[key] && (
                     <img
                       className={
-                        'absolute pointer-events-none saturate-200 hue-rotate-[320deg] brightness-150 animate-custom-ping'
+                        'absolute left-[30%] top-[22%] w-[1rem] h-[1rem] pointer-events-none saturate-200 hue-rotate-[320deg] brightness-150 animate-custom-ping'
                       }
                       src={'/images/icons/GlowIcon.png'}
-                      key={key}
                     />
                   )}
                 </motion.div>

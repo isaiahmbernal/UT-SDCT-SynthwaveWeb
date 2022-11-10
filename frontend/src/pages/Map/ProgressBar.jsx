@@ -21,7 +21,7 @@ const ProgressBar = ({ scannedQR, totalQR, setBadgeShow, markers }) => {
           <img
             src={
               localStorage.getItem('recentScan') !== ''
-                ? markers[localStorage.getItem('recentScan')].src
+                ? markers[localStorage.getItem('recentScan')].badge
                 : '/images/icons/sun.png'
             }
             alt="Badge"

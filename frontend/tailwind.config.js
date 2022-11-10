@@ -37,7 +37,7 @@ module.exports = {
         "custom-spin-slow": "spin 3s linear infinite",
         "wiggle": "wiggle 1.5s ease-in-out infinite",
         "stretch": "stretch 3s linear infinite",
-        "custom-ping": "ping 1.5s linear infinite"
+        "custom-ping": "ping 2s linear infinite"
       },
     },
   },
