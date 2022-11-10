@@ -10,7 +10,12 @@ import MissingPage from "./pages/MissingPage";
 export default function App() {
   const location = useLocation();
   return (
-    <div className="bg-black">
+    <div className="bg-black" onTouchMove={(event) => {
+      console.log("Bruh")
+      if (event.scale !== 1) {
+        event.preventDefault();
+      }
+    }}>
       <AnimatePresence mode="wait">
         <Routes key={location.pathname} location={location}>
           <Route path="/">
@@ -26,7 +31,12 @@ export default function App() {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter onTouchMove={(event) => {
+      console.log("Bruh")
+      if (event.scale !== 1) {
+        event.preventDefault();
+      }
+    }}>
       <App />
     </BrowserRouter>
   </React.StrictMode>

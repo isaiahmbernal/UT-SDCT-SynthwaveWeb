@@ -45,7 +45,7 @@ const BadgeInfo = ({ setBadgeShow, scannedQR, totalQR, markers, progress }) => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-6 min-h-[0rem] max-w-[17rem] w-full overflow-y-scroll p-2">
+        <div className="grid grid-cols-3 gap-6 min-h-[0rem] max-w-[23rem] w-full overflow-y-scroll p-2">
           {Object.entries(markers).map(([key, value]) => (
             <motion.div
               className="relative"
@@ -53,9 +53,9 @@ const BadgeInfo = ({ setBadgeShow, scannedQR, totalQR, markers, progress }) => {
               whileTap={{ scale: 0.9 }}
             >
               {progress[key] ? (
-                <div className="-z-10 w-full h-full absolute blur-[.5rem] bg-gradient-to-r from-pink-500 to-blue-500 rounded-3xl"></div>
+                <div className="-z-10 w-full h-full absolute blur-[.4rem] bg-gradient-to-r from-pink-500 to-blue-500 rounded-3xl"></div>
               ) : (
-                <div className="-z-10 w-full h-full absolute blur-[.5rem] bg-gray-400 rounded-3xl"></div>
+                <div className="-z-10 w-full h-full absolute blur-[.4rem] bg-gray-400 rounded-3xl"></div>
               )}
               <div
                 className={`${
@@ -64,7 +64,7 @@ const BadgeInfo = ({ setBadgeShow, scannedQR, totalQR, markers, progress }) => {
                 // key={value}
               >
                 <img
-                  src={progress[key] ? value.alt : value.src}
+                  src={value.badge}
                   className={`${
                     progress[key] ? 'animate-wiggle' : 'brightness-[6%]'
                   }`}
