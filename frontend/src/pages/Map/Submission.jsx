@@ -30,8 +30,8 @@ const Submission = ({ setBadgeShow, scannedQR, totalQR }) => {
       method="POST"
     >
       <div className="flex flex-col gap-4">
-        <p className="text-white font-bold text-xl text-center">
-          Thanks for participating!
+        <p className="text-white font-bold text-4xl text-center">
+          Thanks For Participating!
         </p>
         {/* <p className="text-white font-bold text-2xl text-center">
           Submit below to see your score on the screen!
@@ -46,7 +46,7 @@ const Submission = ({ setBadgeShow, scannedQR, totalQR }) => {
           // value={name}
           name="name"
           // onChange={(event) => setName(event.target.value)}
-          className="px-2 py-1 rounded-md"
+          className="px-2 py-1 text-xl rounded-md h-[3rem]"
         />
       </div>
 
@@ -58,11 +58,12 @@ const Submission = ({ setBadgeShow, scannedQR, totalQR }) => {
           // value={hometown}
           name="location"
           // onChange={(event) => setHometown(event.target.value)}
-          className="px-2 py-1 rounded-md"
+          className="px-2 py-1 text-xl rounded-md h-[3rem]"
         />
       </div>
 
-      <select id="color" name="color">
+      <select id="color" name="color" className="my-8 w-[12.5rem] h-[2.5rem] text-xl rounded-lg">
+        <option selected className="block w-full">choose a color</option>
         <option value="red">Red</option>
         <option value="lime">Lime</option>
         <option value="black">Black</option>
@@ -75,7 +76,7 @@ const Submission = ({ setBadgeShow, scannedQR, totalQR }) => {
       <input hidden type="text" name="score" />
       {/* <img src={badges[scannedQR]} className="max-w-[10rem] w-full self-center animate-wiggle hover:animate-custom-spin" /> */}
       <button
-        className="bg-purple-800 max-w-[23rem] text-white self-center w-full h-[3rem] rounded-lg shadow-md"
+        className="text-3xl bg-black max-w-[23rem] text-white self-center w-[8rem] h-[4rem] rounded-lg shadow-md border-double border-4 border-neonBlue"
         type="submit"
       >
         Submit
