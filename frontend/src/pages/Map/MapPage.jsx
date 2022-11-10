@@ -7,6 +7,7 @@ import BadgeInfo from './BadgeInfo';
 import GoodJob from './GoodJob';
 import ProgressBar from './ProgressBar';
 import Submission from './Submission';
+import NewUser from './NewUser';
 
 const MapPage = () => {
   const markers = {
@@ -17,7 +18,7 @@ const MapPage = () => {
       transition: { delay: 0.7 },
       src: '/images/icons/MarkerGreenRight.png',
       alt: '/images/icons/MarkerRedRight.png',
-      badge: "/images/icons/lambo_star.png"
+      badge: '/images/icons/lambo_star.png',
     },
     stage: {
       name: 'Interactive Music',
@@ -26,7 +27,7 @@ const MapPage = () => {
       transition: { delay: 0.2 },
       src: '/images/icons/MarkerGreenLeft.png',
       alt: '/images/icons/MarkerRedLeft.png',
-      badge: "/images/icons/stage_star.png"
+      badge: '/images/icons/stage_star.png',
     },
     lobby: {
       name: 'Lobby',
@@ -35,7 +36,7 @@ const MapPage = () => {
       transition: { delay: 0.3 },
       src: '/images/icons/MarkerGreenLeft.png',
       alt: '/images/icons/MarkerRedLeft.png',
-      badge: "/images/icons/entrance_star.png"
+      badge: '/images/icons/entrance_star.png',
     },
     projection: {
       name: 'Outdoor Projection',
@@ -44,7 +45,7 @@ const MapPage = () => {
       transition: { delay: 0.4 },
       src: '/images/icons/MarkerGreenRight.png',
       alt: '/images/icons/MarkerRedRight.png',
-      badge: "/images/icons/outdoor_projection_star.png"
+      badge: '/images/icons/outdoor_projection_star.png',
     },
     games: {
       name: 'Games',
@@ -53,7 +54,7 @@ const MapPage = () => {
       transition: { delay: 0.5 },
       src: '/images/icons/MarkerGreenLeft.png',
       alt: '/images/icons/MarkerRedLeft.png',
-      badge: "/images/icons/games_star.png"
+      badge: '/images/icons/games_star.png',
     },
     river: {
       name: 'River of Light',
@@ -62,7 +63,7 @@ const MapPage = () => {
       transition: { delay: 0.9 },
       src: '/images/icons/MarkerGreenLeft.png',
       alt: '/images/icons/MarkerRedLeft.png',
-      badge: "/images/icons/river_star.png"
+      badge: '/images/icons/river_star.png',
     },
     bike: {
       name: 'Light Bike',
@@ -71,7 +72,7 @@ const MapPage = () => {
       transition: { delay: 0.6 },
       src: '/images/icons/MarkerGreenRight.png',
       alt: '/images/icons/MarkerRedRight.png',
-      badge: "/images/icons/bike_star.png"
+      badge: '/images/icons/bike_star.png',
     },
     steprepeat: {
       name: 'Step & Repeat',
@@ -80,7 +81,7 @@ const MapPage = () => {
       transition: { delay: 0.8 },
       src: '/images/icons/MarkerGreenRight.png',
       alt: '/images/icons/MarkerRedRight.png',
-      badge: "/images/icons/steprepeat_star.png"
+      badge: '/images/icons/steprepeat_star.png',
     },
     finale: {
       name: 'Live Performance',
@@ -89,7 +90,7 @@ const MapPage = () => {
       transition: { delay: 0.1 },
       src: '/images/icons/MarkerGreenLeft.png',
       alt: '/images/icons/MarkerRedLeft.png',
-      badge: "/images/icons/live_performance_star.png"
+      badge: '/images/icons/live_performance_star.png',
     },
   };
 
@@ -97,6 +98,7 @@ const MapPage = () => {
   const [selectedInfo, setSelectedInfo] = useState({});
   const [badgeShow, setBadgeShow] = useState(false);
   const [updating, setUpdating] = useState(true);
+  const [isNew, setIsNew] = useState(false);
   const [goodJob, setGoodJob] = useState(false);
   const [confetti, setConfetti] = useState(false);
   const [finale, setFinale] = useState(false);
@@ -119,6 +121,7 @@ const MapPage = () => {
     localStorage.setItem('codes', JSON.stringify(codes));
     localStorage.setItem('finale', false);
     localStorage.setItem('recentScan', '');
+    localStorage.setItem('isNew', true);
   }
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -126,6 +129,8 @@ const MapPage = () => {
   // console.log("QR Code Value:", code);
   let finaleString = localStorage.getItem('finale');
   let finaleStorage = JSON.parse(finaleString);
+  let isNewString = localStorage.getItem('isNew');
+  let isNewStorage = JSON.parse(isNewString);
 
   const progressString = localStorage.getItem('codes');
   const progress = JSON.parse(progressString);
@@ -138,10 +143,18 @@ const MapPage = () => {
   useEffect(() => {
     console.log('Local Storage:', progress);
     console.log('Finale Storage:', finaleStorage);
-    console.log(finale);
+    console.log('Finale:', finale);
+    console.log('isNew:', isNew);
     if (finaleStorage === true) {
       setFinale(true);
-    } else if (code) {
+    } else if (isNewStorage) {
+      setIsNew(true);
+      setTimeout(() => {
+        setIsNew(false);
+        localStorage.setItem('isNew', false);
+      }, 6000);
+    }
+    if (code) {
       if (code == 'finale') {
         localStorage.setItem('finale', true);
         console.log('*** That QR code looks legit!');
@@ -179,15 +192,15 @@ const MapPage = () => {
 
   return (
     // Wallpaper Background
-    <div className="bg-gradient-to-b from-backgroundTop to-backgroundBot bg-center bg-cover font-share-tech-mono flex flex-col items-center justify-start min-w-[100vw] min-h-[100vh]">
+    <div className="bg-gradient-to-b from-backgroundTop to-backgroundBot bg-center bg-cover flex flex-col items-center justify-start min-w-[100vw] min-h-[100vh]">
+
       {/* Confetti */}
       {confetti && <Fireworks />}
 
       {/* Map */}
-
       {!finale && !badgeShow && (
         <motion.div
-          className="relative max-w-[26rem] w-full h-screen min-h-[41.7rem] max-h-[43rem] flex flex-col"
+          className="relative max-w-[24.5rem] w-full h-screen min-h-[41.7rem] max-h-[43rem] flex flex-col"
           initial={{ x: -1000 }}
           animate={{ x: 0 }}
           transition={{ duration: 0.1 }}
@@ -239,7 +252,7 @@ const MapPage = () => {
                   {!progress[key] && (
                     <img
                       className={
-                        'absolute left-[30%] top-[22%] w-[1rem] h-[1rem] pointer-events-none saturate-200 hue-rotate-[320deg] brightness-150 animate-custom-ping'
+                        'absolute left-[14%] top-[12%] w-[1.5rem] h-[1.5rem] pointer-events-none saturate-200 hue-rotate-[320deg] brightness-150 animate-custom-ping'
                       }
                       src={'/images/icons/GlowIcon.png'}
                     />
@@ -266,7 +279,25 @@ const MapPage = () => {
       )}
 
       <AnimatePresence>
-        {goodJob && <GoodJob scannedQR={scannedQR} totalQR={totalQR} />}
+        {(goodJob || isNew) && (
+          <motion.div
+            className="fixed top-[1%] max-w-[23rem] w-full z-[100] h-[8rem] flex flex-col gap-4"
+            initial={{ y: -500 }}
+            animate={{ y: 0 }}
+            exit={{ y: -500 }}
+            transition={{ delay: 1, duration: 1 }}
+            key="HUD"
+          >
+            {goodJob && <GoodJob scannedQR={scannedQR} totalQR={totalQR} />}
+            {isNew && <NewUser />}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {finale && (
+          <Submission setBadgeShow={setBadgeShow} scannedQR={scannedQR} />
+        )}
       </AnimatePresence>
 
       {/* <AnimatePresence>
@@ -281,11 +312,6 @@ const MapPage = () => {
           />
         )}
       </AnimatePresence> */}
-      <AnimatePresence>
-        {finale && (
-          <Submission setBadgeShow={setBadgeShow} scannedQR={scannedQR} />
-        )}
-      </AnimatePresence>
     </div>
   );
 };

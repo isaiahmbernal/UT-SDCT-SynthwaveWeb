@@ -9,6 +9,7 @@ module.exports = {
       },
       fontFamily: {
         "share-tech-mono": ["Share Tech Mono"],
+        "fredoka-one": ["Fredoka One"]
       },
       colors: {
         screen: "#001018",
