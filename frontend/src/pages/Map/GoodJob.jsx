@@ -1,19 +1,22 @@
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 
 const GoodJob = ({ scannedQR, totalQR }) => {
   return (
     <motion.section
-      className="fixed top-[1%] w-[97%] z-[100] h-[20vh] shadow-md bg-white text-black flex flex-col items-center justify-center text-xl font-bold text-center p-4 gap-4 rounded-xl"
+      className="fixed top-[1%] max-w-[23rem] w-full z-[100] h-[8rem]"
       initial={{ y: -500 }}
       animate={{ y: 0 }}
       exit={{ y: -500 }}
-      transition={{delay: 1, duration: 1}}
+      transition={{ delay: 1, duration: 1 }}
       key="map-info"
     >
-      <h1>Good Job!</h1>
-      <p>
-        You've scanned {scannedQR} out of {totalQR} QR codes!
-      </p>
+      <div className="z-[-1] absolute w-full h-full blur-[.5rem] bg-gradient-to-r from-pink-500 to-blue-500"></div>
+      <div className="w-full h-full bg-black text-white text-xl text-center rounded-xl flex flex-col px-10 py-4 justify-between items-center">
+        <h1>Good Job!</h1>
+        <p>
+          You've scanned {scannedQR} out of {totalQR} QR codes!
+        </p>
+      </div>
     </motion.section>
   );
 };
