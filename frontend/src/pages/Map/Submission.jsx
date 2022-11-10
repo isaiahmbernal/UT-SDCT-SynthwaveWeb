@@ -2,16 +2,6 @@ import { motion } from 'framer-motion';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
-// const badges = [
-//   "/logo192.png",
-//   "/images/icons/entrance_star.png",
-//   "/images/icons/lambo_star.png",
-//   "/images/icons/live_performance_star.png",
-//   "/images/icons/outdoor_projection_star.png",
-//   "/images/icons/stage_star.png",
-//   "/images/icons/games_star.png",
-// ];
-
 const Submission = ({ setBadgeShow, scannedQR, totalQR }) => {
   // const [name, setName] = useState('');
   // const [hometown, setHometown] = useState('');
@@ -50,29 +40,29 @@ const Submission = ({ setBadgeShow, scannedQR, totalQR }) => {
         />
       </div>
 
-      <div className="flex flex-col max-w-[23rem] w-full gap-2">
-        <p className="text-white font-bold text-2xl">Hometown:</p>
-        <input
-          type="text"
-          placeholder="Hometown"
-          // value={hometown}
-          name="location"
-          // onChange={(event) => setHometown(event.target.value)}
-          className="px-2 py-1 rounded-md"
-        />
-      </div>
+      {/* <div className="flex flex-col max-w-[23rem] w-full gap-2"> */}
+      {/* <p className="text-white font-bold text-2xl">Hometown:</p> */}
+      <input
+        type="hidden"
+        // placeholder="Hometown"
+        value="unknown"
+        name="location"
+        // onChange={(event) => setHometown(event.target.value)}
+        className="px-2 py-1 rounded-md"
+      />
+      {/* </div> */}
 
       <select id="color" name="color">
         <option value="red">Red</option>
-        <option value="lime">Lime</option>
-        <option value="black">Black</option>
+        <option value="blue">Blue</option>
+        <option value="green">Green</option>
         <option value="orange">Orange</option>
       </select>
 
-      <p className="text-white text-center max-w-[23rem] w-full font-bold text-3xl">
+      {/* <p className="text-white text-center max-w-[23rem] w-full font-bold text-3xl">
         Score: {scannedQR}
-      </p>
-      <input hidden type="text" name="score" />
+      </p> */}
+      <input type="hidden" name="score" value="10" />
       {/* <img src={badges[scannedQR]} className="max-w-[10rem] w-full self-center animate-wiggle hover:animate-custom-spin" /> */}
       <button
         className="bg-purple-800 max-w-[23rem] text-white self-center w-full h-[3rem] rounded-lg shadow-md"
