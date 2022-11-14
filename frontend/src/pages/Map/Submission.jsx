@@ -10,18 +10,18 @@ const Submission = ({ setBadgeShow, scannedQR, totalQR }) => {
       method="POST"
     >
       <div className="flex flex-col gap-4">
-        <p className="text-white font-bold text-xl text-center">
+        <p className="text-white font-bold text-3xl text-center">
           Thanks for participating!
         </p>
       </div>
 
       <div className="flex max-w-[23rem] w-full flex-col gap-2">
-        <p className="text-white font-bold text-2xl">Name:</p>
+        <p className="text-white font-bold text-2xl">Your Name:</p>
         <input
           type="text"
           placeholder="Name"
           name="name"
-          className="px-2 py-1 rounded-md"
+          className="px-3 py-1 text-xl rounded-md"
         />
       </div>
 
@@ -32,7 +32,14 @@ const Submission = ({ setBadgeShow, scannedQR, totalQR }) => {
         className="px-2 py-1 rounded-md"
       />
 
-      <select id="color" name="color">
+      <select
+        id="color"
+        name="color"
+        className="max-w-[23rem] w-full h-[2.5rem] text-xl rounded-lg px-2"
+      >
+        <option disabled selected className="block w-full">
+          Choose a color
+        </option>
         <option value="red">Red</option>
         <option value="blue">Blue</option>
         <option value="green">Green</option>
@@ -42,7 +49,7 @@ const Submission = ({ setBadgeShow, scannedQR, totalQR }) => {
       <input type="hidden" name="score" value="10" />
 
       <button
-        className="bg-purple-800 max-w-[23rem] text-white self-center w-full h-[3rem] rounded-lg shadow-md"
+        className="bg-black max-w-[23rem] border-double border-neonBlue border-4 text-white self-center w-full h-[3rem] rounded-lg shadow-md"
         type="submit"
       >
         Submit
