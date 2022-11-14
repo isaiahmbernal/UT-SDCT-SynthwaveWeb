@@ -280,7 +280,7 @@ const MapPage = () => {
       <AnimatePresence>
         {(goodJob || isNew) && (
           <motion.div
-            className="fixed top-[1%] max-w-[23rem] w-full z-[100] h-[8rem] flex flex-col gap-4"
+            className="fixed top-[1%] max-w-[23rem] w-full z-[100] max-h-[16rem] flex flex-col gap-4"
             initial={{ y: -500 }}
             animate={{ y: 0 }}
             exit={{ y: -500 }}
