@@ -5,7 +5,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         "map":
-          "url('../public/images/map.png')",
+          "url('../public/images/map.jpg')",
       },
       fontFamily: {
         "share-tech-mono": ["Share Tech Mono"],

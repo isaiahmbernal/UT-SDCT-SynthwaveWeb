@@ -12,8 +12,8 @@ import NewUser from './NewUser';
 const MapPage = () => {
   const markers = {
     lambo: {
-      name: 'Lambo',
-      info: "Woah, where'd they get a lamborghini! 🤩",
+      name: 'Synthwave Lamborghini',
+      info: 'Check out a life-size Lamborghini Countach, featuring a range of creative programming on custom interactive screens!',
       className: 'left-[53%] top-[49.3%]',
       transition: { delay: 0.7 },
       src: '/images/icons/MarkerGreenRight.png',
@@ -21,8 +21,8 @@ const MapPage = () => {
       badge: '/images/icons/lambo_star.png',
     },
     stage: {
-      name: 'Interactive Music',
-      info: 'Time to interact with some music 😎',
+      name: 'Synth Stage Performances',
+      info: 'Enjoy live synth-music with custom lighting, written and performed by UT students!',
       className: 'left-[19%] top-[46%]',
       transition: { delay: 0.2 },
       src: '/images/icons/MarkerGreenLeft.png',
@@ -30,8 +30,8 @@ const MapPage = () => {
       badge: '/images/icons/stage_star.png',
     },
     lobby: {
-      name: 'Lobby',
-      info: "Maybe there's some cool stuff here 👀",
+      name: 'Arcade Experience',
+      info: "Visit a playground for classic 80's arcade animation including a light reactive backdrop, reimagined arcade games, an ambient audio experience, and a TV Wave sculpture.",
       className: 'left-[23%] top-[15%]',
       transition: { delay: 0.3 },
       src: '/images/icons/MarkerGreenLeft.png',
@@ -39,8 +39,8 @@ const MapPage = () => {
       badge: '/images/icons/entrance_star.png',
     },
     projection: {
-      name: 'Outdoor Projection',
-      info: 'Wow, how pretty 📽',
+      name: 'Projection Experience',
+      info: 'Admire iconic synthwave imagery, with active animation made visible on the side of the Winship Drama building!',
       className: 'left-[43%] top-[45%]',
       transition: { delay: 0.4 },
       src: '/images/icons/MarkerGreenRight.png',
@@ -48,8 +48,8 @@ const MapPage = () => {
       badge: '/images/icons/outdoor_projection_star.png',
     },
     games: {
-      name: 'Games',
-      info: "1v1 me, let's go",
+      name: 'Electric Avenue',
+      info: "Show off your skill, and play in a number of synthwave-themed games!",
       className: 'left-[38%] top-[53%]',
       transition: { delay: 0.5 },
       src: '/images/icons/MarkerGreenLeft.png',
@@ -57,8 +57,8 @@ const MapPage = () => {
       badge: '/images/icons/games_star.png',
     },
     river: {
-      name: 'River of Light',
-      info: "Please, don't swim",
+      name: 'Rivers of Light',
+      info: "Stroll by the whimsical rivers of light, and take in the world of 80's themed colors and visuals!",
       className: 'left-[60%] top-[71%]',
       transition: { delay: 0.9 },
       src: '/images/icons/MarkerGreenLeft.png',
@@ -67,7 +67,7 @@ const MapPage = () => {
     },
     bike: {
       name: 'Light Bike',
-      info: "Please, don't go for a ride",
+      info: "Strike a pose at this synthwave photo-op, a homage to a classic '80s vehicle!",
       className: 'left-[40%] top-[80%]',
       transition: { delay: 0.6 },
       src: '/images/icons/MarkerGreenRight.png',
@@ -76,7 +76,7 @@ const MapPage = () => {
     },
     steprepeat: {
       name: 'Step & Repeat',
-      info: 'Smile and wave, smile and wave.',
+      info: 'Step up and smile! Gather your friends at this event-themed spot to snap a few memorable pics!',
       className: 'left-[53%] top-[55%]',
       transition: { delay: 0.8 },
       src: '/images/icons/MarkerGreenRight.png',
@@ -84,8 +84,8 @@ const MapPage = () => {
       badge: '/images/icons/steprepeat_star.png',
     },
     finale: {
-      name: 'Live Performance',
-      info: "It's time to ride the synthwave 🏄",
+      name: 'The Theater',
+      info: "Ride the Synthwave with The Midnight for an exclusive UT performance, doors open at 7:30.",
       className: 'left-[33%] top-[6.5%]',
       transition: { delay: 0.1 },
       src: '/images/icons/MarkerGreenLeft.png',
@@ -193,7 +193,6 @@ const MapPage = () => {
   return (
     // Wallpaper Background
     <div className="bg-gradient-to-b from-backgroundTop to-backgroundBot bg-center bg-cover flex flex-col items-center justify-start min-w-[100vw] min-h-[100vh]">
-
       {/* Confetti */}
       {confetti && <Fireworks />}
 
