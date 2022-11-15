@@ -141,10 +141,10 @@ const MapPage = () => {
   }).length;
 
   useEffect(() => {
-    console.log('Local Storage:', progress);
-    console.log('Finale Storage:', finaleStorage);
-    console.log('Finale:', finale);
-    console.log('isNew:', isNew);
+    // console.log('Local Storage:', progress);
+    // console.log('Finale Storage:', finaleStorage);
+    // console.log('Finale:', finale);
+    // console.log('isNew:', isNew);
     if (finaleStorage === true) {
       setFinale(true);
     } else if (isNewStorage) {
@@ -157,35 +157,43 @@ const MapPage = () => {
     if (code) {
       if (code == 'finale') {
         localStorage.setItem('finale', true);
-        console.log('*** That QR code looks legit!');
-        console.log('Progress ', code + ':', progress[code]);
+        // console.log('*** That QR code looks legit!');
+        // console.log('Progress ', code + ':', progress[code]);
         progress[code] = true;
-        console.log('New Progress ', code + ':', progress[code]);
+        // console.log('New Progress ', code + ':', progress[code]);
         localStorage.setItem('codes', JSON.stringify(progress));
-        console.log('New Local Storage:', progress);
+        // console.log('New Local Storage:', progress);
         localStorage.setItem('recentScan', code);
         setFinale(true);
       } else if (Object.keys(progress).includes(code)) {
-        console.log('*** That QR code looks legit!');
-        console.log('Progress ', code + ':', progress[code]);
+        // console.log('*** That QR code looks legit!');
+        // console.log('Progress ', code + ':', progress[code]);
         progress[code] = true;
-        console.log('New Progress ', code + ':', progress[code]);
+        // console.log('New Progress ', code + ':', progress[code]);
         localStorage.setItem('codes', JSON.stringify(progress));
-        console.log('New Local Storage:', progress);
+        // console.log('New Local Storage:', progress);
         localStorage.setItem('recentScan', code);
+        let goodJobTimer = 7000
+        if (scannedQR == 8) {goodJobTimer = 15000}
         setUpdating(false);
         setConfetti(true);
         setTimeout(() => {
           setConfetti(false);
-        }, 5500);
+        }, 3000);
         setGoodJob(true);
         setTimeout(() => {
           setGoodJob(false);
-        }, 4000);
+        }, goodJobTimer);
         navigate('/?code=');
       } else {
-        console.log('*** Nope, nice try buddy');
+        // console.log('*** Nope, nice try buddy');
       }
+    } else if (scannedQR == 8) {
+      let goodJobTimer = 15000
+      setGoodJob(true);
+        setTimeout(() => {
+          setGoodJob(false);
+        }, goodJobTimer);
     }
     setUpdating(false);
   }, []);
