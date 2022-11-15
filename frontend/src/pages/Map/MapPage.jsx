@@ -152,7 +152,7 @@ const MapPage = () => {
       setTimeout(() => {
         setIsNew(false);
         localStorage.setItem('isNew', false);
-      }, 6000);
+      }, 10000);
     }
     if (code) {
       if (code == 'finale') {
