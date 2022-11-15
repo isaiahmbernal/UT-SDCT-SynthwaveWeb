@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 const MapInfo = ({ selectedInfo, setInfoShow }) => {
   return (
     <motion.section
-      className="fixed bottom-[1%] max-w-[30rem] w-[97%] z-10 h-[28vh] shadow-xl text-black flex flex-col items-center justify-between"
+      className="fixed bottom-[1%] max-w-[30rem] w-[97%] z-10 h-[20vh] min-h-[14rem] shadow-xl text-black flex flex-col items-center justify-between"
       initial={{ y: 100 }}
       animate={{ y: 0 }}
       exit={{ y: 300 }}

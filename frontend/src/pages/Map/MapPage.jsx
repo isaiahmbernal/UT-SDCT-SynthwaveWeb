@@ -21,7 +21,7 @@ const MapPage = () => {
       badge: '/images/icons/lambo_star.png',
     },
     stage: {
-      name: 'Synth Stage Performances',
+      name: 'Stage Performances',
       info: 'Enjoy live synth-music with custom lighting, written and performed by UT students!',
       className: 'left-[19%] top-[46%]',
       transition: { delay: 0.2 },
